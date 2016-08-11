@@ -115,14 +115,14 @@ timeline.push(study_info);
     return false;
   };
 
-/*var consent_block = {
+var consent_block = {
     "type": "html",
     "force_refresh": true,
     "url": "consent.html",
     "cont_btn": "start",
     "check_fn": check_consent
   }
-timeline.push(consent_block); */
+timeline.push(consent_block);
 
 /******************************************************************************/
 /**************************   Instructions  ***********************************/
@@ -167,7 +167,7 @@ var middle_term = jsPsych.randomization.shuffle(texts.middle_term);
 /*Array of the 40 contents*/
 var terms = jsPsych.randomization.shuffle(texts.terms);
 
-/*Array of 40 random [1,0][0,1]-pairs to determine the believablility later on*/
+/*Array of 40 random [1,0][0,1]-pairs to determine the Believability later on*/
 var belief = [];
 var beliefFirst = null;
 var beliefSecond = null;
@@ -245,7 +245,7 @@ var stimuli = [
   '<p>'+'No '+ terms[7][belief[7][1]] +' are '+ middle_term[7] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[7][belief[7][0]] +' are not '+terms[7][belief[7][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'IE4_O2_2', Validity: 'valid', Believablility: belief[7][1], DirectionOfConclusion: 'backward', Subject: terms[7][belief[7][0]] , Predaicate: terms[7][belief[7][1]] , Middle: middle_term[7]}
+  data: { Stimulus: 'IE4_O2_2', Validity: 'valid', Believability: belief[7][1], DirectionOfConclusion: 'backward', Subject: terms[7][belief[7][0]] , Predaicate: terms[7][belief[7][1]] , Middle: middle_term[7]}
   },
 {stimulus: /*Syllogism: IE2_O2  Valid: yes*/
   '<div class = stimuli >'+
@@ -261,7 +261,7 @@ var stimuli = [
   '<p>'+'No '+ terms[9][belief[9][1]] +' are '+ middle_term[9] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[9][belief[9][0]] +' are not '+terms[9][belief[9][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'IE2_O2_2', Validity: 'valid', Believablility: belief[9][1], DirectionOfConclusion: 'backward', Subject: terms[9][belief[9][0]] , Predaicate: terms[9][belief[9][1]] , Middle: middle_term[9]}
+  data: { Stimulus: 'IE2_O2_2', Validity: 'valid', Believability: belief[9][1], DirectionOfConclusion: 'backward', Subject: terms[9][belief[9][0]] , Predaicate: terms[9][belief[9][1]] , Middle: middle_term[9]}
   },
 {stimulus: /*Syllogism: EI2_O2 Valid: no*/
   '<div class = stimuli >'+
@@ -269,7 +269,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[10][belief[10][1]] +' are '+ middle_term[10] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[10][belief[10][0]] +' are not '+terms[10][belief[10][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EI2_O2_1', Validity: 'invalid', Believablility: belief[10][1], DirectionOfConclusion: 'backward', Subject: terms[10][belief[10][0]] , Predaicate: terms[10][belief[10][1]] , Middle: middle_term[10]}
+  data: { Stimulus: 'EI2_O2_1', Validity: 'invalid', Believability: belief[10][1], DirectionOfConclusion: 'backward', Subject: terms[10][belief[10][0]] , Predaicate: terms[10][belief[10][1]] , Middle: middle_term[10]}
   },
 {stimulus: /*Syllogism: EI2_O2 Valid: no*/
   '<div class = stimuli >'+
@@ -277,7 +277,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[11][belief[11][1]] +' are '+ middle_term[11] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[11][belief[11][0]] +' are not '+terms[11][belief[11][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EI2_O2_2', Validity: 'invalid', Believablility: belief[11][1], DirectionOfConclusion: 'backward', Subject: terms[11][belief[11][0]] , Predaicate: terms[11][belief[11][1]] , Middle: middle_term[11]}
+  data: { Stimulus: 'EI2_O2_2', Validity: 'invalid', Believability: belief[11][1], DirectionOfConclusion: 'backward', Subject: terms[11][belief[11][0]] , Predaicate: terms[11][belief[11][1]] , Middle: middle_term[11]}
   },
 {stimulus: /*Syllogism: EI3_O2 Valid: no*/
   '<div class = stimuli >'+
@@ -285,7 +285,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[12] +' are '+ terms[12][belief[12][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[12][belief[12][0]] +' are not '+terms[12][belief[12][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EI3_O2_1', Validity: 'invalid', Believablility: belief[12][1], DirectionOfConclusion: 'backward', Subject: terms[12][belief[12][0]] , Predaicate: terms[12][belief[12][1]] , Middle: middle_term[12]}
+  data: { Stimulus: 'EI3_O2_1', Validity: 'invalid', Believability: belief[12][1], DirectionOfConclusion: 'backward', Subject: terms[12][belief[12][0]] , Predaicate: terms[12][belief[12][1]] , Middle: middle_term[12]}
   },
 {stimulus: /*Syllogism: EI3_O2 Valid: no*/
   '<div class = stimuli >'+
@@ -293,7 +293,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[13] +' are '+ terms[13][belief[13][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[13][belief[13][0]] +' are not '+terms[13][belief[13][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EI3_O2_2', Validity: 'invalid', Believablility: belief[13][1], DirectionOfConclusion: 'backward', Subject: terms[13][belief[13][0]] , Predaicate: terms[13][belief[13][1]] , Middle: middle_term[13]}
+  data: { Stimulus: 'EI3_O2_2', Validity: 'invalid', Believability: belief[13][1], DirectionOfConclusion: 'backward', Subject: terms[13][belief[13][0]] , Predaicate: terms[13][belief[13][1]] , Middle: middle_term[13]}
   },
 {stimulus: /*Syllogism: EI4_O2 Valid: no*/
   '<div class = stimuli >'+
@@ -301,7 +301,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[14] +' are '+ terms[14][belief[14][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[14][belief[14][0]] +' are not '+terms[14][belief[14][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EI4_O2_1', Validity: 'invalid', Believablility: belief[14][1], DirectionOfConclusion: 'backward', Subject: terms[14][belief[14][0]] , Predaicate: terms[14][belief[14][1]] , Middle: middle_term[14]}
+  data: { Stimulus: 'EI4_O2_1', Validity: 'invalid', Believability: belief[14][1], DirectionOfConclusion: 'backward', Subject: terms[14][belief[14][0]] , Predaicate: terms[14][belief[14][1]] , Middle: middle_term[14]}
   },
 {stimulus: /*Syllogism: EI4_O2 Valid: no*/
   '<div class = stimuli >'+
@@ -309,7 +309,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[15] +' are '+ terms[15][belief[15][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[15][belief[15][0]] +' are not '+terms[15][belief[15][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EI4_O2_2', Validity: 'invalid', Believablility: belief[15][1], DirectionOfConclusion: 'backward', Subject: terms[15][belief[15][0]] , Predaicate: terms[15][belief[15][1]] , Middle: middle_term[15]}
+  data: { Stimulus: 'EI4_O2_2', Validity: 'invalid', Believability: belief[15][1], DirectionOfConclusion: 'backward', Subject: terms[15][belief[15][0]] , Predaicate: terms[15][belief[15][1]] , Middle: middle_term[15]}
   },
 {stimulus: /*Syllogism: IE4_O1 Valid: no*/
   '<div class = stimuli >'+
@@ -317,7 +317,7 @@ var stimuli = [
   '<p>'+'No '+ middle_term[16] +' are '+ terms[16][belief[16][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[16][belief[16][1]] +' are not '+terms[16][belief[16][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'IE4_O1_1', Validity: 'invalid', Believablility: belief[16][0], DirectionOfConclusion: 'forward', Subject: terms[16][belief[16][1]] , Predaicate: terms[16][belief[16][0]] , Middle: middle_term[16]}
+  data: { Stimulus: 'IE4_O1_1', Validity: 'invalid', Believability: belief[16][0], DirectionOfConclusion: 'forward', Subject: terms[16][belief[16][1]] , Predaicate: terms[16][belief[16][0]] , Middle: middle_term[16]}
   },
 {stimulus: /*Syllogism: IE4_O1 Valid: no*/
   '<div class = stimuli >'+
@@ -325,7 +325,7 @@ var stimuli = [
   '<p>'+'No '+ middle_term[17] +' are '+ terms[17][belief[17][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[17][belief[17][1]] +' are not '+terms[17][belief[17][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'IE4_O1_2', Validity: 'invalid', Believablility: belief[17][0], DirectionOfConclusion: 'forward', Subject: terms[17][belief[17][1]] , Predaicate: terms[17][belief[17][0]] , Middle: middle_term[17]}
+  data: { Stimulus: 'IE4_O1_2', Validity: 'invalid', Believability: belief[17][0], DirectionOfConclusion: 'forward', Subject: terms[17][belief[17][1]] , Predaicate: terms[17][belief[17][0]] , Middle: middle_term[17]}
   },
 {stimulus: /*Syllogism: IE2_O1 Valid: no*/
   '<div class = stimuli >'+
@@ -333,7 +333,7 @@ var stimuli = [
   '<p>'+'No '+ terms[18][belief[18][1]] +' are '+ middle_term[18] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[18][belief[18][1]] +' are not '+terms[18][belief[18][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'IE2_O1_1', Validity: 'invalid', Believablility: belief[18][0], DirectionOfConclusion: 'forward', Subject: terms[18][belief[18][1]] , Predaicate: terms[18][belief[18][0]] , Middle: middle_term[18]}
+  data: { Stimulus: 'IE2_O1_1', Validity: 'invalid', Believability: belief[18][0], DirectionOfConclusion: 'forward', Subject: terms[18][belief[18][1]] , Predaicate: terms[18][belief[18][0]] , Middle: middle_term[18]}
   },
 {stimulus: /*Syllogism: IE2_O1 Valid: no*/
   '<div class = stimuli >'+
@@ -341,7 +341,7 @@ var stimuli = [
   '<p>'+'No '+ terms[19][belief[19][1]] +' are '+ middle_term[19] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[19][belief[19][1]] +' are not '+terms[19][belief[19][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'IE2_O1_2', Validity: 'invalid', Believablility: belief[19][0], DirectionOfConclusion: 'forward', Subject: terms[19][belief[19][1]] , Predaicate: terms[19][belief[19][0]] , Middle: middle_term[19]}
+  data: { Stimulus: 'IE2_O1_2', Validity: 'invalid', Believability: belief[19][0], DirectionOfConclusion: 'forward', Subject: terms[19][belief[19][1]] , Predaicate: terms[19][belief[19][0]] , Middle: middle_term[19]}
   },
 {stimulus: /*Syllogism: OA2_O2  Valid: yes*/
   '<div class = stimuli >'+
@@ -349,7 +349,7 @@ var stimuli = [
   '<p>'+'All '+ terms[20][belief[20][1]] +' are '+ middle_term[20] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[20][belief[20][0]] +' are not '+terms[20][belief[20][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OA2_O2_1', Validity: 'valid', Believablility: belief[20][1], DirectionOfConclusion: 'backward', Subject: terms[20][belief[20][0]] , Predaicate: terms[20][belief[20][1]] , Middle: middle_term[20]}
+  data: { Stimulus: 'OA2_O2_1', Validity: 'valid', Believability: belief[20][1], DirectionOfConclusion: 'backward', Subject: terms[20][belief[20][0]] , Predaicate: terms[20][belief[20][1]] , Middle: middle_term[20]}
   },
 {stimulus: /*Syllogism: OA2_O2  Valid: yes*/
   '<div class = stimuli >'+
@@ -357,7 +357,7 @@ var stimuli = [
   '<p>'+'All '+ terms[21][belief[21][1]] +' are '+ middle_term[21] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[21][belief[21][0]] +' are not '+terms[21][belief[21][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OA2_O2_2', Validity: 'valid', Believablility: belief[21][1], DirectionOfConclusion: 'backward', Subject: terms[21][belief[21][0]] , Predaicate: terms[21][belief[21][1]] , Middle: middle_term[21]}
+  data: { Stimulus: 'OA2_O2_2', Validity: 'valid', Believability: belief[21][1], DirectionOfConclusion: 'backward', Subject: terms[21][belief[21][0]] , Predaicate: terms[21][belief[21][1]] , Middle: middle_term[21]}
   },
 {stimulus: /*Syllogism: AO2_O1  Valid: yes*/
   '<div class = stimuli >'+
@@ -365,7 +365,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[22][belief[22][1]] +' are not '+ middle_term[22] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[22][belief[22][1]] +' are not '+terms[22][belief[22][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'AO2_O1_1', Validity: 'valid', Believablility: belief[22][0], DirectionOfConclusion: 'forward', Subject: terms[22][belief[22][1]] , Predaicate: terms[22][belief[22][0]] , Middle: middle_term[22]}
+  data: { Stimulus: 'AO2_O1_1', Validity: 'valid', Believability: belief[22][0], DirectionOfConclusion: 'forward', Subject: terms[22][belief[22][1]] , Predaicate: terms[22][belief[22][0]] , Middle: middle_term[22]}
   },
 {stimulus: /*Syllogism: AO2_O1  Valid: yes*/
   '<div class = stimuli >'+
@@ -373,7 +373,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[23][belief[23][1]] +' are not '+ middle_term[23] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[23][belief[23][1]] +' are not '+terms[23][belief[23][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'AO2_O1_2', Validity: 'valid', Believablility: belief[23][0], DirectionOfConclusion: 'forward', Subject: terms[23][belief[23][1]] , Predaicate: terms[23][belief[23][0]] , Middle: middle_term[23]}
+  data: { Stimulus: 'AO2_O1_2', Validity: 'valid', Believability: belief[23][0], DirectionOfConclusion: 'forward', Subject: terms[23][belief[23][1]] , Predaicate: terms[23][belief[23][0]] , Middle: middle_term[23]}
   },
 {stimulus: /*Syllogism: OA3_O1  Valid: yes*/
   '<div class = stimuli >'+
@@ -381,7 +381,7 @@ var stimuli = [
   '<p>'+'All '+ middle_term[24] +' are '+ terms[24][belief[24][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[24][belief[24][1]] +' are not '+terms[24][belief[24][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OA3_O1_1', Validity: 'valid', Believablility: belief[24][0], DirectionOfConclusion: 'forward', Subject: terms[24][belief[24][1]] , Predaicate: terms[24][belief[24][0]] , Middle: middle_term[24]}
+  data: { Stimulus: 'OA3_O1_1', Validity: 'valid', Believability: belief[24][0], DirectionOfConclusion: 'forward', Subject: terms[24][belief[24][1]] , Predaicate: terms[24][belief[24][0]] , Middle: middle_term[24]}
   },
 {stimulus: /*Syllogism: OA3_O1  Valid: yes*/
   '<div class = stimuli >'+
@@ -389,7 +389,7 @@ var stimuli = [
   '<p>'+'All '+ middle_term[25] +' are '+ terms[25][belief[25][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[25][belief[25][1]] +' are not '+terms[25][belief[25][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OA3_O1_2', Validity: 'valid', Believablility: belief[25][0], DirectionOfConclusion: 'forward', Subject: terms[25][belief[25][1]] , Predaicate: terms[25][belief[25][0]] , Middle: middle_term[25]}
+  data: { Stimulus: 'OA3_O1_2', Validity: 'valid', Believability: belief[25][0], DirectionOfConclusion: 'forward', Subject: terms[25][belief[25][1]] , Predaicate: terms[25][belief[25][0]] , Middle: middle_term[25]}
   },
 {stimulus: /*Syllogism: AO3_O2  Valid: yes*/
   '<div class = stimuli >'+
@@ -397,7 +397,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[26] +' are not '+ terms[26][belief[26][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[26][belief[26][0]] +' are not '+terms[26][belief[26][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'AO3_O2_1', Validity: 'valid', Believablility: belief[26][1], DirectionOfConclusion: 'backward', Subject: terms[26][belief[26][0]] , Predaicate: terms[26][belief[26][1]] , Middle: middle_term[26]}
+  data: { Stimulus: 'AO3_O2_1', Validity: 'valid', Believability: belief[26][1], DirectionOfConclusion: 'backward', Subject: terms[26][belief[26][0]] , Predaicate: terms[26][belief[26][1]] , Middle: middle_term[26]}
   },
 {stimulus: /*Syllogism: AO3_O2  Valid: yes*/
   '<div class = stimuli >'+
@@ -405,7 +405,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[27] +' are not '+ terms[27][belief[27][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[27][belief[27][0]] +' are not '+terms[27][belief[27][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'AO3_O2_2', Validity: 'valid', Believablility: belief[27][1], DirectionOfConclusion: 'backward', Subject: terms[27][belief[27][0]] , Predaicate: terms[27][belief[27][1]] , Middle: middle_term[27]}
+  data: { Stimulus: 'AO3_O2_2', Validity: 'valid', Believability: belief[27][1], DirectionOfConclusion: 'backward', Subject: terms[27][belief[27][0]] , Predaicate: terms[27][belief[27][1]] , Middle: middle_term[27]}
   },
 {stimulus: /*Syllogism: OE2_O2  Valid: no*/
   '<div class = stimuli >'+
@@ -413,7 +413,7 @@ var stimuli = [
   '<p>'+'No '+ terms[28][belief[28][1]] +' are '+ middle_term[28] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[28][belief[28][0]] +' are not '+terms[28][belief[28][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OE2_O2_1', Validity: 'invalid', Believablility: belief[28][1], DirectionOfConclusion: 'backward', Subject: terms[28][belief[28][0]] , Predaicate: terms[28][belief[28][1]] , Middle: middle_term[28]}
+  data: { Stimulus: 'OE2_O2_1', Validity: 'invalid', Believability: belief[28][1], DirectionOfConclusion: 'backward', Subject: terms[28][belief[28][0]] , Predaicate: terms[28][belief[28][1]] , Middle: middle_term[28]}
   },
 {stimulus: /*Syllogism: OE2_O2  Valid: no*/
   '<div class = stimuli >'+
@@ -421,7 +421,7 @@ var stimuli = [
   '<p>'+'No '+ terms[29][belief[29][1]] +' are '+ middle_term[29] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[29][belief[29][0]] +' are not '+terms[29][belief[29][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OE2_O2_2', Validity: 'invalid', Believablility: belief[29][1], DirectionOfConclusion: 'backward', Subject: terms[29][belief[29][0]] , Predaicate: terms[29][belief[29][1]] , Middle: middle_term[29]}
+  data: { Stimulus: 'OE2_O2_2', Validity: 'invalid', Believability: belief[29][1], DirectionOfConclusion: 'backward', Subject: terms[29][belief[29][0]] , Predaicate: terms[29][belief[29][1]] , Middle: middle_term[29]}
   },
 {stimulus: /*Syllogism: EO2_O1  Valid: no*/
   '<div class = stimuli >'+
@@ -429,7 +429,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[30][belief[30][1]] +' are not '+ middle_term[30] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[30][belief[30][1]] +' are not '+terms[30][belief[30][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EO2_O1_1', Validity: 'invalid', Believablility: belief[30][0], DirectionOfConclusion: 'forward', Subject: terms[30][belief[30][1]] , Predaicate: terms[30][belief[30][0]] , Middle: middle_term[30]}
+  data: { Stimulus: 'EO2_O1_1', Validity: 'invalid', Believability: belief[30][0], DirectionOfConclusion: 'forward', Subject: terms[30][belief[30][1]] , Predaicate: terms[30][belief[30][0]] , Middle: middle_term[30]}
   },
 {stimulus: /*Syllogism: EO2_O1  Valid: no*/
   '<div class = stimuli >'+
@@ -437,7 +437,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[31][belief[31][1]] +' are not '+ middle_term[31] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[31][belief[31][1]] +' are not '+terms[31][belief[31][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EO2_O1_2', Validity: 'invalid', Believablility: belief[31][0], DirectionOfConclusion: 'forward', Subject: terms[31][belief[31][1]] , Predaicate: terms[31][belief[31][0]] , Middle: middle_term[31]}
+  data: { Stimulus: 'EO2_O1_2', Validity: 'invalid', Believability: belief[31][0], DirectionOfConclusion: 'forward', Subject: terms[31][belief[31][1]] , Predaicate: terms[31][belief[31][0]] , Middle: middle_term[31]}
   },
 {stimulus: /*Syllogism: OE3_O1  Valid: no*/
   '<div class = stimuli >'+
@@ -445,7 +445,7 @@ var stimuli = [
   '<p>'+'No '+ middle_term[32] +' are '+ terms[32][belief[32][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[32][belief[32][1]] +' are not '+terms[32][belief[32][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OE3_O1_1', Validity: 'invalid', Believablility: belief[32][0], DirectionOfConclusion: 'forward', Subject: terms[32][belief[32][1]] , Predaicate: terms[32][belief[32][0]] , Middle: middle_term[32]}
+  data: { Stimulus: 'OE3_O1_1', Validity: 'invalid', Believability: belief[32][0], DirectionOfConclusion: 'forward', Subject: terms[32][belief[32][1]] , Predaicate: terms[32][belief[32][0]] , Middle: middle_term[32]}
   },
 {stimulus: /*Syllogism: OE3_O1  Valid: no*/
   '<div class = stimuli >'+
@@ -453,7 +453,7 @@ var stimuli = [
   '<p>'+'No '+ middle_term[33] +' are '+ terms[33][belief[33][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[33][belief[33][1]] +' are not '+terms[33][belief[33][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OE3_O1_2', Validity: 'invalid', Believablility: belief[33][0], DirectionOfConclusion: 'forward', Subject: terms[33][belief[33][1]] , Predaicate: terms[33][belief[33][0]] , Middle: middle_term[33]}
+  data: { Stimulus: 'OE3_O1_2', Validity: 'invalid', Believability: belief[33][0], DirectionOfConclusion: 'forward', Subject: terms[33][belief[33][1]] , Predaicate: terms[33][belief[33][0]] , Middle: middle_term[33]}
   },
 {stimulus: /*Syllogism: EO3_O2  Valid: no*/
   '<div class = stimuli >'+
@@ -461,7 +461,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[34] +' are not '+ terms[34][belief[34][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[34][belief[34][0]] +' are not '+terms[34][belief[34][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EO3_O2_1', Validity: 'invalid', Believablility: belief[34][1], DirectionOfConclusion: 'backward', Subject: terms[34][belief[34][0]] , Predaicate: terms[34][belief[34][1]] , Middle: middle_term[34]}
+  data: { Stimulus: 'EO3_O2_1', Validity: 'invalid', Believability: belief[34][1], DirectionOfConclusion: 'backward', Subject: terms[34][belief[34][0]] , Predaicate: terms[34][belief[34][1]] , Middle: middle_term[34]}
   },
 {stimulus: /*Syllogism: EO3_O2  Valid: no*/
   '<div class = stimuli >'+
@@ -469,7 +469,7 @@ var stimuli = [
   '<p>'+'Some '+ middle_term[35] +' are not '+ terms[35][belief[35][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[35][belief[35][0]] +' are not '+terms[35][belief[35][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'EO3_O2_2', Validity: 'invalid', Believablility: belief[35][1], DirectionOfConclusion: 'backward', Subject: terms[35][belief[35][0]] , Predaicate: terms[35][belief[35][1]] , Middle: middle_term[35]}
+  data: { Stimulus: 'EO3_O2_2', Validity: 'invalid', Believability: belief[35][1], DirectionOfConclusion: 'backward', Subject: terms[35][belief[35][0]] , Predaicate: terms[35][belief[35][1]] , Middle: middle_term[35]}
   },
 {stimulus: /*Syllogism: OA4_O2  Valid: no*/
   '<div class = stimuli >'+
@@ -477,7 +477,7 @@ var stimuli = [
   '<p>'+'All '+ middle_term[36] +' are '+ terms[36][belief[36][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[36][belief[36][0]] +' are not '+terms[36][belief[36][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OA4_O2_1', Validity: 'invalid', Believablility: belief[36][1], DirectionOfConclusion: 'backward', Subject: terms[36][belief[36][0]] , Predaicate: terms[36][belief[36][1]] , Middle: middle_term[36]}
+  data: { Stimulus: 'OA4_O2_1', Validity: 'invalid', Believability: belief[36][1], DirectionOfConclusion: 'backward', Subject: terms[36][belief[36][0]] , Predaicate: terms[36][belief[36][1]] , Middle: middle_term[36]}
   },
 {stimulus: /*Syllogism: OA4_O2  Valid: no*/
   '<div class = stimuli >'+
@@ -485,7 +485,7 @@ var stimuli = [
   '<p>'+'All '+ middle_term[37] +' are '+ terms[37][belief[37][1]] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[37][belief[37][0]] +' are not '+terms[37][belief[37][1]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'OA4_O2_2', Validity: 'invalid', Believablility: belief[37][1], DirectionOfConclusion: 'backward', Subject: terms[37][belief[37][0]] , Predaicate: terms[37][belief[37][1]] , Middle: middle_term[37]}
+  data: { Stimulus: 'OA4_O2_2', Validity: 'invalid', Believability: belief[37][1], DirectionOfConclusion: 'backward', Subject: terms[37][belief[37][0]] , Predaicate: terms[37][belief[37][1]] , Middle: middle_term[37]}
   },
 {stimulus: /*Syllogism: AO1_O1  Valid: no*/
   '<div class = stimuli >'+
@@ -493,7 +493,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[38][belief[38][1]] +' are not '+ middle_term[38] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[38][belief[38][1]] +' are not '+terms[38][belief[38][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'AO1_O1_1', Validity: 'invalid', Believablility: belief[38][0], DirectionOfConclusion: 'forward', Subject: terms[38][belief[38][1]] , Predaicate: terms[38][belief[38][0]] , Middle: middle_term[38]}
+  data: { Stimulus: 'AO1_O1_1', Validity: 'invalid', Believability: belief[38][0], DirectionOfConclusion: 'forward', Subject: terms[38][belief[38][1]] , Predaicate: terms[38][belief[38][0]] , Middle: middle_term[38]}
   },
 {stimulus: /*Syllogism: AO1_O1  Valid: no*/
   '<div class = stimuli >'+
@@ -501,7 +501,7 @@ var stimuli = [
   '<p>'+'Some '+ terms[39][belief[39][1]] +' are not '+ middle_term[39] +'</p>'+'<hr />'+
   '<p>'+'Therefore some '+ terms[39][belief[39][1]] +' are not '+terms[39][belief[39][0]] +'</p>' +
   '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
-  data: { Stimulus: 'AO1_O1_2', Validity: 'invalid', Believablility: belief[39][0], DirectionOfConclusion: 'forward', Subject: terms[39][belief[39][1]] , Predaicate: terms[39][belief[39][0]] , Middle: middle_term[39]}
+  data: { Stimulus: 'AO1_O1_2', Validity: 'invalid', Believability: belief[39][0], DirectionOfConclusion: 'forward', Subject: terms[39][belief[39][1]] , Predaicate: terms[39][belief[39][0]] , Middle: middle_term[39]}
   }
     ];
 
@@ -561,7 +561,7 @@ var q2 =["Do you have any training in formal logic (e.g. taken a course)?",
 var q3 = ["If you want to leave any comments, please wrtie them here:"];
 var opt1 = ["Male", "Female", "Other / No answer"];
 var opt2 = ["Working", "Student", "Seeking work", "Other"];
-var opt3 = ["University degree", "WTTTFFFFF",];
+var opt3 = ["University degree", "what else?",];
 var opt4 = ["Yes", "No"]
 var opt5 = ["Reading", "Cinema", "Sports", "Going out", "Hiking", "Robot Rumble", "Golf", "Other:"];
 var opt6 = ["Yes (my data can be used).", "No (better not use my data)."];
@@ -611,7 +611,7 @@ function saveData(subjectID, CSV, JSON){
           type: 'post',
           cache: false,
           url: '../store.php',
-          data: {subjectID: vp_ID, folder: "MaExp", csvStrings: CSV, dataAsJSON: JSON}
+          data: {subjectID: vp_ID, folder: "syllog2016data", csvStrings: CSV, dataAsJSON: JSON}
        });
       }
 
@@ -621,8 +621,8 @@ var csvString = jsPsych.data.dataAsCSV();
   jsPsych.init({
     display_element: $('#jspsych-target'),
     timeline: timeline,
-    on_finish: function(data){ saveData("filename.csv", jsPsych.data.dataAsCSV())}
-	default_iti: 100
+	  default_iti: 100,
+    on_finish: function(data){ saveData("syllog2016data.csv", jsPsych.data.dataAsCSV()) }
   });
   </script>
 </html>
