@@ -32,9 +32,9 @@
 
 var timeline = [];
 
-var vp_ID = jsPsych.randomization.randomID(16);
-var date = (new Date());
-var Datum = date.toUTCString();
+var Subject_ID = jsPsych.randomization.randomID(16);
+var predate = (new Date());
+var date = date.toUTCString();
 
 
 
@@ -49,8 +49,8 @@ function getPar(str,style){
 
 
 jsPsych.data.addProperties({
-	Datum: Datum,
-	VP: vp_ID
+	date: date,
+	ID: Subject_ID
 	});
 
 
@@ -591,7 +591,7 @@ var survey_p3 = {
 	on_finish: function(data){
 				var csvString = jsPsych.data.dataAsCSV();
 				var jsonString = jsPsych.data.dataAsJSON();
-				saveData(vp_ID, csvString, jsonString)
+				saveData(Subject_ID, csvString, jsonString)
 			}
 };
 timeline.push(survey_p3);
@@ -611,7 +611,7 @@ function saveData(subjectID, CSV, JSON){
           type: 'post',
           cache: false,
           url: '../store.php',
-          data: {subjectID: vp_ID, folder: "syllog2016data", csvStrings: CSV, dataAsJSON: JSON}
+          data: {subjectID: Subject_ID, folder: "syllog2016data", csvStrings: CSV, dataAsJSON: JSON}
        });
       }
 
