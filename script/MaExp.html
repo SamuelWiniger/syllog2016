@@ -1,0 +1,628 @@
+<!doctype html>
+<html>
+  <head>
+	<title>Experiment</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+  	<script src="js/snap.svg-min.js"></script>
+    <script src="../jspsych_new.js"></script>
+  	<script src="../plugins/jspsych-text_adapted.js"></script>
+  	<script src="../plugins/jspsych-instructions.js"></script>
+  	<script src="../plugins/jspsych-html.js"></script>
+  	<script src="../plugins/jspsych-survey.js"></script>
+  	<script src="../plugins/jspsych-survey-text.js"></script>
+    <script src="../plugins/jspsych-fullscreen.js"></script>
+    <script src="../plugins/jspsych-button-response.js"></script>
+  	<script src="./texts.js"></script>
+      <link rel="stylesheet" href="css/jquery-ui.css"></link>
+      <link rel="stylesheet" href="../css/jspsych.css" type="text/css"></link>
+      <meta charset="UTF-8">
+    <style>
+      img { width: 300px; }
+    </style>
+  </head>
+  <body>
+    <div id="jspsych-target"></div>
+	<div id="demo"></div>
+  </body>
+  <script>
+
+/******************************************************************************/
+/**************************   Initializing  ***********************************/
+
+var timeline = [];
+
+var vp_ID = jsPsych.randomization.randomID(16);
+var date = (new Date());
+var Datum = date.toUTCString();
+
+
+
+var errStyle = "color:red;margin-top:200px;text-align:center;font-weight:bold;";
+
+function getPar(str,style){
+    if (typeof style == "undefined"){
+      style='';
+    }
+    return "<div class='jspsych-display-element'><p style='"+style+"'>"+str+"</p><div>"
+  }
+
+
+jsPsych.data.addProperties({
+	Datum: Datum,
+	VP: vp_ID
+	});
+
+
+/******************************************************************************/
+/***************************   fullscreen  ************************************/
+
+var activate_fullscreen = {
+    type: 'fullscreen',
+    showtext: getPar(texts.fullscreen,'margin-top:50px;'),
+    buttonStyle : 'float:right;',
+    buttontext: "Start experiment",
+    on_fullscreen_abort: function(){
+      jsPsych.finishTrial();
+      jsPsych.endExperiment(getPar(texts.fullscreen_exit,errStyle));
+},
+    on_hide_abort:function(){
+      jsPsych.finishTrial();
+      jsPsych.endExperiment(getPar(texts.visibility_exit,errStyle));
+    },
+    on_launch_fail: function(){
+      jsPsych.finishTrial();
+      jsPsych.endExperiment(getPar(texts.fullscreen_fail,errStyle));
+    },
+    on_hide_fail:function(){
+      jsPsych.finishTrial();
+      jsPsych.endExperiment(getPar(texts.visibility_fail,errStyle));
+    }
+}
+timeline.push(activate_fullscreen);
+
+/******************************************************************************/
+/**************************   consent form  ***********************************/
+
+var study_info = {
+	type: 'instructions',
+	show_clickable_nav: true,
+	pages: [
+	"<div class='center-content'><img src='uzhLogo.png' style='width:680px;height:78px'></img></div>"+
+	"<h3 style='text-align: center'>Study information</h3>"+
+	"<p>Please read the following information carefully.</p>"+
+	"<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about?</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>"+
+	"<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you about 20 minutes. For compensation you will recieve HENRIK FRAGEN.</dd>"+
+	"<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>"+
+	"<dd>Participation is completely voluntary. If you decide to paricipate, you can withdraw at any time without stating any reason. "+
+	"To quit the experiment you simply have to close your browser window.</dd>"+
+	"<dt style='font-size: 105%;line-height: 2;'>Possible risks and harms</dt><dd>No risks and harms are known to be caused by this experiment.</dd>"+
+	"<dt style='font-size: 105%;line-height: 2;'>Confidentiality and anonymity</dt><dd>Your anonymity will always be preserved. No data will be collected, "+
+	"that lets one infere your identity. All data gathered can be made accessible to other researchers in anonymised form.</dd></dl>"+
+	"<p style='font-size: 90%'>For further questions please contact: <br> Dr. Henrik Singmann, University of Zurich (singmann@psychologie.uzh.ch)</p>"
+	]
+}
+timeline.push(study_info);
+
+
+  var check_consent = function(elem) {
+    if ($('#consent_checkbox1').is(':checked') && $('#consent_checkbox2').is(':checked') && $('#consent_checkbox3').is(':checked')) {
+      return true;
+    } else {
+      alert("You have to check all boxes if you want to participate");
+      return false;
+    }
+    return false;
+  };
+
+/*var consent_block = {
+    "type": "html",
+    "force_refresh": true,
+    "url": "consent.html",
+    "cont_btn": "start",
+    "check_fn": check_consent
+  }
+timeline.push(consent_block); */
+
+/******************************************************************************/
+/**************************   Instructions  ***********************************/
+
+var instructions_block = {
+  type: 'instructions',
+  pages: [
+      texts.instructions_page_one,
+      texts.instructions_page_two,
+      texts.instructions_page_three
+  ],
+  show_clickable_nav: true
+}
+timeline.push(instructions_block);
+
+var Example = {
+  type: 'button-response',
+  stimulus: '<div class = stimuli >'+
+            '<p>All monkeys are aquinces <br>'+
+            'Some aquinces are mortal </p>'+ '<hr />' +
+            '<p>Therefore Some monkeys are mortal</p>' + '</div>' + '<br>'+ '<br>'+
+            '<p class = prompt>Does this conclusion follow necessarily? </p>' ,
+  choices: ['Yes','I don`t know','No'],
+  is_html: true
+}
+timeline.push(Example);
+
+var preLaunch = {
+  type: 'button-response',
+  stimulus:texts.preLaunch,
+  choices: ['Start'], /*damit kann man weiterklicken*/
+  is_html: true,
+        }
+timeline.push(preLaunch);
+
+/******************************************************************************/
+/******************************   trials  *************************************/
+
+/*Array of the 40 nonsense middle terms*/
+var middle_term = jsPsych.randomization.shuffle(texts.middle_term);
+
+/*Array of the 40 contents*/
+var terms = jsPsych.randomization.shuffle(texts.terms);
+
+/*Array of 40 random [1,0][0,1]-pairs to determine the believablility later on*/
+var belief = [];
+var beliefFirst = null;
+var beliefSecond = null;
+
+for (var i = 0; i < 40; i++){
+  var beliefFirst = Math.floor((Math.random()*2));
+  if (beliefFirst == 1) {beliefSecond = 0;}
+  else beliefSecond = 1;
+  belief[i] = [beliefFirst,beliefSecond];
+  var beliefFirst = null;
+  var beliefSecond = null;
+}
+
+var stimuli = [
+
+{stimulus: /*Syllogism: EI2_01 , Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[0][belief[0][0]] + ' are ' + middle_term[0] +'</p>'+
+  '<p>'+'Some '+ terms[0][belief[0][1]] +' are '+ middle_term[0] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[0][belief[0][1]] +' are not '+terms[0][belief[0][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI2_O1_1' , Validity: 'valid' , Believabiliy: belief[0][0] , DirectionOfConclusion: 'forward', Subject: terms[0][belief[0][1]] , Predaicate: terms[0][belief[0][0]] , Middle: middle_term[0]}
+  },
+{stimulus: /*Syllogism: EI2_01 , Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[1][belief[1][0]] +' are '+ middle_term[1] +'</p>'+
+  '<p>'+'Some '+ terms[1][belief[1][1]] +' are '+ middle_term[1] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[1][belief[1][1]] +' are not '+terms[1][belief[1][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI2_01_2', Validity: 'valid' , Believabiliy: belief[1][0] , DirectionOfConclusion: 'forward', Subject: terms[1][belief[1][1]] , Predaicate: terms[1][belief[1][0]] , Middle: middle_term[1]}
+  },
+{stimulus: /*Syllogism: EI3_01  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ middle_term[2] +' are '+ terms[2][belief[2][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[2] +' are '+ terms[2][belief[2][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[2][belief[2][1]] +' are not '+terms[2][belief[2][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI3_01_1', Validity: 'valid', Believabiliy: belief[2][0], DirectionOfConclusion: 'forward', Subject: terms[2][belief[2][1]] , Predaicate: terms[2][belief[2][0]] , Middle: middle_term[2]}
+  },
+{stimulus: /*Syllogism: EI3_01  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ middle_term[3] +' are '+ terms[3][belief[3][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[3] +' are '+ terms[3][belief[3][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[3][belief[3][1]] +' are not '+terms[3][belief[3][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI3_01_2', Validity: 'valid', Believabiliy: belief[3][0], DirectionOfConclusion: 'forward', Subject: terms[3][belief[3][1]] , Predaicate: terms[3][belief[3][0]] , Middle: middle_term[3]}
+  },
+{stimulus: /*Syllogism: EI4_O1  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[4][belief[4][0]] +' are '+ middle_term[4] +'</p>'+
+  '<p>'+'Some '+ middle_term[4] +' are '+ terms[4][belief[4][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[4][belief[4][1]] +' are not '+terms[4][belief[4][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI4_O1_1', Validity: 'valid', Believabiliy: belief[4][0], DirectionOfConclusion: 'forward', Subject: terms[4][belief[4][1]] , Predaicate: terms[4][belief[4][0]] , Middle: middle_term[4]}
+  },
+{stimulus: /*Syllogism: EI4_O1  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[5][belief[5][0]] +' are '+ middle_term[5] +'</p>'+
+  '<p>'+'Some '+ middle_term[5] +' are '+ terms[5][belief[5][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[5][belief[5][1]] +' are not '+terms[5][belief[5][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI4_O1_2', Validity: 'valid', Believabiliy: belief[5][0], DirectionOfConclusion: 'forward', Subject: terms[5][belief[5][1]] , Predaicate: terms[5][belief[5][0]] , Middle: middle_term[5]}
+  },
+{stimulus: /*Syllogism: IE4_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[6][belief[6][0]]  +' are '+ middle_term[6] +'</p>'+
+  '<p>'+'No '+ middle_term[6] +' are '+ terms[6][belief[6][1]]  +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[6][belief[6][0]] +' are not '+terms[6][belief[6][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE4_O2_1', Validity: 'valid', Believabiliy: belief[6][1], DirectionOfConclusion: 'backward', Subject: terms[6][belief[6][0]] , Predaicate: terms[6][belief[6][1]] , Middle: middle_term[6]}
+  },
+{stimulus: /*Syllogism: IE4_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[7][belief[7][0]] +' are '+ middle_term[7] +'</p>'+
+  '<p>'+'No '+ terms[7][belief[7][1]] +' are '+ middle_term[7] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[7][belief[7][0]] +' are not '+terms[7][belief[7][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE4_O2_2', Validity: 'valid', Believablility: belief[7][1], DirectionOfConclusion: 'backward', Subject: terms[7][belief[7][0]] , Predaicate: terms[7][belief[7][1]] , Middle: middle_term[7]}
+  },
+{stimulus: /*Syllogism: IE2_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[8][belief[8][0]] +' are '+ middle_term[8] +'</p>'+
+  '<p>'+'No '+ terms[8][belief[8][1]] +' are '+ middle_term[8] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[8][belief[8][0]] +' are not '+terms[8][belief[8][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE2_O2_1', Validity: 'valid', Believabiliy: belief[8][1], DirectionOfConclusion: 'backward', Subject: terms[8][belief[8][0]] , Predaicate: terms[8][belief[8][1]] , Middle: middle_term[8]}
+  },
+{stimulus: /*Syllogism: IE2_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[9][belief[9][0]] +' are '+ middle_term[9] +'</p>'+
+  '<p>'+'No '+ terms[9][belief[9][1]] +' are '+ middle_term[9] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[9][belief[9][0]] +' are not '+terms[9][belief[9][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE2_O2_2', Validity: 'valid', Believablility: belief[9][1], DirectionOfConclusion: 'backward', Subject: terms[9][belief[9][0]] , Predaicate: terms[9][belief[9][1]] , Middle: middle_term[9]}
+  },
+{stimulus: /*Syllogism: EI2_O2 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[10][belief[10][0]] +' are '+ middle_term[10] +'</p>'+
+  '<p>'+'Some '+ terms[10][belief[10][1]] +' are '+ middle_term[10] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[10][belief[10][0]] +' are not '+terms[10][belief[10][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI2_O2_1', Validity: 'invalid', Believablility: belief[10][1], DirectionOfConclusion: 'backward', Subject: terms[10][belief[10][0]] , Predaicate: terms[10][belief[10][1]] , Middle: middle_term[10]}
+  },
+{stimulus: /*Syllogism: EI2_O2 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[11][belief[11][0]] +' are '+ middle_term[11] +'</p>'+
+  '<p>'+'Some '+ terms[11][belief[11][1]] +' are '+ middle_term[11] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[11][belief[11][0]] +' are not '+terms[11][belief[11][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI2_O2_2', Validity: 'invalid', Believablility: belief[11][1], DirectionOfConclusion: 'backward', Subject: terms[11][belief[11][0]] , Predaicate: terms[11][belief[11][1]] , Middle: middle_term[11]}
+  },
+{stimulus: /*Syllogism: EI3_O2 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ middle_term[12] +' are '+ terms[12][belief[12][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[12] +' are '+ terms[12][belief[12][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[12][belief[12][0]] +' are not '+terms[12][belief[12][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI3_O2_1', Validity: 'invalid', Believablility: belief[12][1], DirectionOfConclusion: 'backward', Subject: terms[12][belief[12][0]] , Predaicate: terms[12][belief[12][1]] , Middle: middle_term[12]}
+  },
+{stimulus: /*Syllogism: EI3_O2 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ middle_term[13] +' are '+ terms[13][belief[13][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[13] +' are '+ terms[13][belief[13][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[13][belief[13][0]] +' are not '+terms[13][belief[13][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI3_O2_2', Validity: 'invalid', Believablility: belief[13][1], DirectionOfConclusion: 'backward', Subject: terms[13][belief[13][0]] , Predaicate: terms[13][belief[13][1]] , Middle: middle_term[13]}
+  },
+{stimulus: /*Syllogism: EI4_O2 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[14][belief[14][0]] +' are '+ middle_term[14] +'</p>'+
+  '<p>'+'Some '+ middle_term[14] +' are '+ terms[14][belief[14][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[14][belief[14][0]] +' are not '+terms[14][belief[14][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI4_O2_1', Validity: 'invalid', Believablility: belief[14][1], DirectionOfConclusion: 'backward', Subject: terms[14][belief[14][0]] , Predaicate: terms[14][belief[14][1]] , Middle: middle_term[14]}
+  },
+{stimulus: /*Syllogism: EI4_O2 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[15][belief[15][0]] +' are '+ middle_term[15] +'</p>'+
+  '<p>'+'Some '+ middle_term[15] +' are '+ terms[15][belief[15][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[15][belief[15][0]] +' are not '+terms[15][belief[15][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EI4_O2_2', Validity: 'invalid', Believablility: belief[15][1], DirectionOfConclusion: 'backward', Subject: terms[15][belief[15][0]] , Predaicate: terms[15][belief[15][1]] , Middle: middle_term[15]}
+  },
+{stimulus: /*Syllogism: IE4_O1 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[16][belief[16][0]] +' are '+ middle_term[16] +'</p>'+
+  '<p>'+'No '+ middle_term[16] +' are '+ terms[16][belief[16][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[16][belief[16][1]] +' are not '+terms[16][belief[16][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE4_O1_1', Validity: 'invalid', Believablility: belief[16][0], DirectionOfConclusion: 'forward', Subject: terms[16][belief[16][1]] , Predaicate: terms[16][belief[16][0]] , Middle: middle_term[16]}
+  },
+{stimulus: /*Syllogism: IE4_O1 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[17][belief[17][0]] +' are '+ middle_term[17] +'</p>'+
+  '<p>'+'No '+ middle_term[17] +' are '+ terms[17][belief[17][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[17][belief[17][1]] +' are not '+terms[17][belief[17][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE4_O1_2', Validity: 'invalid', Believablility: belief[17][0], DirectionOfConclusion: 'forward', Subject: terms[17][belief[17][1]] , Predaicate: terms[17][belief[17][0]] , Middle: middle_term[17]}
+  },
+{stimulus: /*Syllogism: IE2_O1 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[18][belief[18][0]] +' are '+ middle_term[18] +'</p>'+
+  '<p>'+'No '+ terms[18][belief[18][1]] +' are '+ middle_term[18] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[18][belief[18][1]] +' are not '+terms[18][belief[18][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE2_O1_1', Validity: 'invalid', Believablility: belief[18][0], DirectionOfConclusion: 'forward', Subject: terms[18][belief[18][1]] , Predaicate: terms[18][belief[18][0]] , Middle: middle_term[18]}
+  },
+{stimulus: /*Syllogism: IE2_O1 Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[19][belief[19][0]] +' are '+ middle_term[19] +'</p>'+
+  '<p>'+'No '+ terms[19][belief[19][1]] +' are '+ middle_term[19] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[19][belief[19][1]] +' are not '+terms[19][belief[19][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'IE2_O1_2', Validity: 'invalid', Believablility: belief[19][0], DirectionOfConclusion: 'forward', Subject: terms[19][belief[19][1]] , Predaicate: terms[19][belief[19][0]] , Middle: middle_term[19]}
+  },
+{stimulus: /*Syllogism: OA2_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[20][belief[20][0]] +' are not '+ middle_term[20] +'</p>'+
+  '<p>'+'All '+ terms[20][belief[20][1]] +' are '+ middle_term[20] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[20][belief[20][0]] +' are not '+terms[20][belief[20][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OA2_O2_1', Validity: 'valid', Believablility: belief[20][1], DirectionOfConclusion: 'backward', Subject: terms[20][belief[20][0]] , Predaicate: terms[20][belief[20][1]] , Middle: middle_term[20]}
+  },
+{stimulus: /*Syllogism: OA2_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[21][belief[21][0]] +' are not '+ middle_term[21] +'</p>'+
+  '<p>'+'All '+ terms[21][belief[21][1]] +' are '+ middle_term[21] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[21][belief[21][0]] +' are not '+terms[21][belief[21][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OA2_O2_2', Validity: 'valid', Believablility: belief[21][1], DirectionOfConclusion: 'backward', Subject: terms[21][belief[21][0]] , Predaicate: terms[21][belief[21][1]] , Middle: middle_term[21]}
+  },
+{stimulus: /*Syllogism: AO2_O1  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'All '+ terms[22][belief[22][0]] +' are '+ middle_term[22] +'</p>'+
+  '<p>'+'Some '+ terms[22][belief[22][1]] +' are not '+ middle_term[22] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[22][belief[22][1]] +' are not '+terms[22][belief[22][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'AO2_O1_1', Validity: 'valid', Believablility: belief[22][0], DirectionOfConclusion: 'forward', Subject: terms[22][belief[22][1]] , Predaicate: terms[22][belief[22][0]] , Middle: middle_term[22]}
+  },
+{stimulus: /*Syllogism: AO2_O1  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'All '+ terms[23][belief[23][0]] +' are '+ middle_term[23] +'</p>'+
+  '<p>'+'Some '+ terms[23][belief[23][1]] +' are not '+ middle_term[23] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[23][belief[23][1]] +' are not '+terms[23][belief[23][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'AO2_O1_2', Validity: 'valid', Believablility: belief[23][0], DirectionOfConclusion: 'forward', Subject: terms[23][belief[23][1]] , Predaicate: terms[23][belief[23][0]] , Middle: middle_term[23]}
+  },
+{stimulus: /*Syllogism: OA3_O1  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ middle_term[24] +' are not '+ terms[24][belief[24][0]] +'</p>'+
+  '<p>'+'All '+ middle_term[24] +' are '+ terms[24][belief[24][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[24][belief[24][1]] +' are not '+terms[24][belief[24][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OA3_O1_1', Validity: 'valid', Believablility: belief[24][0], DirectionOfConclusion: 'forward', Subject: terms[24][belief[24][1]] , Predaicate: terms[24][belief[24][0]] , Middle: middle_term[24]}
+  },
+{stimulus: /*Syllogism: OA3_O1  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ middle_term[25] +' are not '+ terms[25][belief[25][0]] +'</p>'+
+  '<p>'+'All '+ middle_term[25] +' are '+ terms[25][belief[25][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[25][belief[25][1]] +' are not '+terms[25][belief[25][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OA3_O1_2', Validity: 'valid', Believablility: belief[25][0], DirectionOfConclusion: 'forward', Subject: terms[25][belief[25][1]] , Predaicate: terms[25][belief[25][0]] , Middle: middle_term[25]}
+  },
+{stimulus: /*Syllogism: AO3_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'All '+ middle_term[26] +' are '+ terms[26][belief[26][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[26] +' are not '+ terms[26][belief[26][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[26][belief[26][0]] +' are not '+terms[26][belief[26][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'AO3_O2_1', Validity: 'valid', Believablility: belief[26][1], DirectionOfConclusion: 'backward', Subject: terms[26][belief[26][0]] , Predaicate: terms[26][belief[26][1]] , Middle: middle_term[26]}
+  },
+{stimulus: /*Syllogism: AO3_O2  Valid: yes*/
+  '<div class = stimuli >'+
+  '<p>'+'All '+ middle_term[27] +' are '+ terms[27][belief[27][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[27] +' are not '+ terms[27][belief[27][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[27][belief[27][0]] +' are not '+terms[27][belief[27][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'AO3_O2_2', Validity: 'valid', Believablility: belief[27][1], DirectionOfConclusion: 'backward', Subject: terms[27][belief[27][0]] , Predaicate: terms[27][belief[27][1]] , Middle: middle_term[27]}
+  },
+{stimulus: /*Syllogism: OE2_O2  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[28][belief[28][0]] +' are not '+ middle_term[28] +'</p>'+
+  '<p>'+'No '+ terms[28][belief[28][1]] +' are '+ middle_term[28] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[28][belief[28][0]] +' are not '+terms[28][belief[28][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OE2_O2_1', Validity: 'invalid', Believablility: belief[28][1], DirectionOfConclusion: 'backward', Subject: terms[28][belief[28][0]] , Predaicate: terms[28][belief[28][1]] , Middle: middle_term[28]}
+  },
+{stimulus: /*Syllogism: OE2_O2  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[29][belief[29][0]] +' are not '+ middle_term[29] +'</p>'+
+  '<p>'+'No '+ terms[29][belief[29][1]] +' are '+ middle_term[29] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[29][belief[29][0]] +' are not '+terms[29][belief[29][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OE2_O2_2', Validity: 'invalid', Believablility: belief[29][1], DirectionOfConclusion: 'backward', Subject: terms[29][belief[29][0]] , Predaicate: terms[29][belief[29][1]] , Middle: middle_term[29]}
+  },
+{stimulus: /*Syllogism: EO2_O1  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[30][belief[30][0]] +' are '+ middle_term[30] +'</p>'+
+  '<p>'+'Some '+ terms[30][belief[30][1]] +' are not '+ middle_term[30] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[30][belief[30][1]] +' are not '+terms[30][belief[30][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EO2_O1_1', Validity: 'invalid', Believablility: belief[30][0], DirectionOfConclusion: 'forward', Subject: terms[30][belief[30][1]] , Predaicate: terms[30][belief[30][0]] , Middle: middle_term[30]}
+  },
+{stimulus: /*Syllogism: EO2_O1  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ terms[31][belief[31][0]] +' are '+ middle_term[31] +'</p>'+
+  '<p>'+'Some '+ terms[31][belief[31][1]] +' are not '+ middle_term[31] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[31][belief[31][1]] +' are not '+terms[31][belief[31][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EO2_O1_2', Validity: 'invalid', Believablility: belief[31][0], DirectionOfConclusion: 'forward', Subject: terms[31][belief[31][1]] , Predaicate: terms[31][belief[31][0]] , Middle: middle_term[31]}
+  },
+{stimulus: /*Syllogism: OE3_O1  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ middle_term[32] +' are not '+ terms[32][belief[32][0]] +'</p>'+
+  '<p>'+'No '+ middle_term[32] +' are '+ terms[32][belief[32][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[32][belief[32][1]] +' are not '+terms[32][belief[32][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OE3_O1_1', Validity: 'invalid', Believablility: belief[32][0], DirectionOfConclusion: 'forward', Subject: terms[32][belief[32][1]] , Predaicate: terms[32][belief[32][0]] , Middle: middle_term[32]}
+  },
+{stimulus: /*Syllogism: OE3_O1  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ middle_term[33] +' are not '+ terms[33][belief[33][0]] +'</p>'+
+  '<p>'+'No '+ middle_term[33] +' are '+ terms[33][belief[33][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[33][belief[33][1]] +' are not '+terms[33][belief[33][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OE3_O1_2', Validity: 'invalid', Believablility: belief[33][0], DirectionOfConclusion: 'forward', Subject: terms[33][belief[33][1]] , Predaicate: terms[33][belief[33][0]] , Middle: middle_term[33]}
+  },
+{stimulus: /*Syllogism: EO3_O2  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ middle_term[34] +' are '+ terms[34][belief[34][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[34] +' are not '+ terms[34][belief[34][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[34][belief[34][0]] +' are not '+terms[34][belief[34][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EO3_O2_1', Validity: 'invalid', Believablility: belief[34][1], DirectionOfConclusion: 'backward', Subject: terms[34][belief[34][0]] , Predaicate: terms[34][belief[34][1]] , Middle: middle_term[34]}
+  },
+{stimulus: /*Syllogism: EO3_O2  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'No '+ middle_term[35] +' are '+ terms[35][belief[35][0]] +'</p>'+
+  '<p>'+'Some '+ middle_term[35] +' are not '+ terms[35][belief[35][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[35][belief[35][0]] +' are not '+terms[35][belief[35][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'EO3_O2_2', Validity: 'invalid', Believablility: belief[35][1], DirectionOfConclusion: 'backward', Subject: terms[35][belief[35][0]] , Predaicate: terms[35][belief[35][1]] , Middle: middle_term[35]}
+  },
+{stimulus: /*Syllogism: OA4_O2  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[36][belief[36][0]] +' are not '+ middle_term[36] +'</p>'+
+  '<p>'+'All '+ middle_term[36] +' are '+ terms[36][belief[36][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[36][belief[36][0]] +' are not '+terms[36][belief[36][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OA4_O2_1', Validity: 'invalid', Believablility: belief[36][1], DirectionOfConclusion: 'backward', Subject: terms[36][belief[36][0]] , Predaicate: terms[36][belief[36][1]] , Middle: middle_term[36]}
+  },
+{stimulus: /*Syllogism: OA4_O2  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'Some '+ terms[37][belief[37][0]] +' are not '+ middle_term[37] +'</p>'+
+  '<p>'+'All '+ middle_term[37] +' are '+ terms[37][belief[37][1]] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[37][belief[37][0]] +' are not '+terms[37][belief[37][1]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'OA4_O2_2', Validity: 'invalid', Believablility: belief[37][1], DirectionOfConclusion: 'backward', Subject: terms[37][belief[37][0]] , Predaicate: terms[37][belief[37][1]] , Middle: middle_term[37]}
+  },
+{stimulus: /*Syllogism: AO1_O1  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'All '+ middle_term[38] +' are '+ terms[38][belief[38][0]] +'</p>'+
+  '<p>'+'Some '+ terms[38][belief[38][1]] +' are not '+ middle_term[38] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[38][belief[38][1]] +' are not '+terms[38][belief[38][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'AO1_O1_1', Validity: 'invalid', Believablility: belief[38][0], DirectionOfConclusion: 'forward', Subject: terms[38][belief[38][1]] , Predaicate: terms[38][belief[38][0]] , Middle: middle_term[38]}
+  },
+{stimulus: /*Syllogism: AO1_O1  Valid: no*/
+  '<div class = stimuli >'+
+  '<p>'+'All '+ middle_term[39] +' are '+ terms[39][belief[39][0]] +'</p>'+
+  '<p>'+'Some '+ terms[39][belief[39][1]] +' are not '+ middle_term[39] +'</p>'+'<hr />'+
+  '<p>'+'Therefore some '+ terms[39][belief[39][1]] +' are not '+terms[39][belief[39][0]] +'</p>' +
+  '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+  data: { Stimulus: 'AO1_O1_2', Validity: 'invalid', Believablility: belief[39][0], DirectionOfConclusion: 'forward', Subject: terms[39][belief[39][1]] , Predaicate: terms[39][belief[39][0]] , Middle: middle_term[39]}
+  }
+    ];
+
+/*Shuffle the stimuli array */
+var rand_stimuli = jsPsych.randomization.shuffle(stimuli);
+/*Take the first 16 and put them in a new array*/
+var rand_stimuli_first_16 = rand_stimuli.slice(0,16);
+/*Take the second 16 and put them in a new array*/
+var rand_stimuli_second_16 = rand_stimuli.slice(16,32);
+/*The remaining 8 Stimuli will not be used*/
+
+
+var first_block = {
+  type: 'button-response', /*don't forget the corresponding script!*/
+  choices: ['Yes','I don`t know','No'],
+  is_html: true, /*this needs to be true, as the stimuli are in thml format*/
+  timeline: rand_stimuli_first_16
+    }
+timeline.push(first_block);
+
+var break_block = {
+  type: 'button-response',
+  stimulus:'<p class = center-content>You completed the first half. Keep up the good work!</p>',
+  choices: ['Continue'], /*damit kann man weiterklicken*/
+  is_html: true,
+        }
+timeline.push(break_block);
+
+var second_block = {
+  type: 'button-response', /*don't forget the corresponding script!*/
+  choices: ['Yes','I don`t know','No'],
+  is_html: true, /*this needs to be true, as the stimuli are in thml format*/
+  timeline: rand_stimuli_second_16
+    }
+timeline.push(second_block);
+
+/******************************************************************************/
+/*****************************   survey  **************************************/
+
+  var end_fullscreen = {
+          type: 'fullscreen',
+          showtext: getPar(texts.end_fullscreen,'margin-top:150px;'),
+          buttonStyle : 'float:right;',
+          buttontext: "Proceed to survey",
+          exit: true
+      }
+timeline.push(end_fullscreen);
+
+var q1 = [
+	"Age:",
+	"Gender:",
+	"Occupation:",
+   "Highest level of education:"];
+var q2 =["Do you have any training in formal logic (e.g. taken a course)?",
+	"Here you see a list of hobbies. If you are reading these instructions please chose the option 'Other', and write 'I read the instructions'.",
+	"", "Did you solve all the taks conscientiously? (This question has no influence on your reward.)"];
+var q3 = ["If you want to leave any comments, please wrtie them here:"];
+var opt1 = ["Male", "Female", "Other / No answer"];
+var opt2 = ["Working", "Student", "Seeking work", "Other"];
+var opt3 = ["University degree", "WTTTFFFFF",];
+var opt4 = ["Yes", "No"]
+var opt5 = ["Reading", "Cinema", "Sports", "Going out", "Hiking", "Robot Rumble", "Golf", "Other:"];
+var opt6 = ["Yes (my data can be used).", "No (better not use my data)."];
+
+var survey_p1 = {
+	type: 'survey',
+	questions: q1,
+	options: ["0", opt1, opt2, opt3],
+	required: [true, true, true, true]
+};
+timeline.push(survey_p1);
+
+var survey_p2 = {
+	type: 'survey',
+	questions: q2,
+	options: [opt4, opt5, "0", opt6],
+	required: [true, true, false, true]
+};
+timeline.push(survey_p2);
+
+var survey_p3 = {
+	type: 'survey-text',
+	questions: q3,
+	rows: [5],
+	columns: [90],
+	preamble: getPar(texts.save),
+	on_finish: function(data){
+				var csvString = jsPsych.data.dataAsCSV();
+				var jsonString = jsPsych.data.dataAsJSON();
+				saveData(vp_ID, csvString, jsonString)
+			}
+};
+timeline.push(survey_p3);
+
+/******************************************************************************/
+/**************************   Data saving  ************************************/
+
+ var debriefing_block = {
+        type: 'text',
+        text: getPar(texts.debriefing,'margin-top:100px'),
+        cont_key: [114]
+      };
+timeline.push(debriefing_block);
+
+function saveData(subjectID, CSV, JSON){
+       $.ajax({
+          type: 'post',
+          cache: false,
+          url: '../store.php',
+          data: {subjectID: vp_ID, folder: "MaExp", csvStrings: CSV, dataAsJSON: JSON}
+       });
+      }
+
+var csvString = jsPsych.data.dataAsCSV();
+
+/* */
+  jsPsych.init({
+    display_element: $('#jspsych-target'),
+    timeline: timeline,
+    on_finish: function(data){ saveData("filename.csv", jsPsych.data.dataAsCSV())}
+	default_iti: 100
+  });
+  </script>
+</html>

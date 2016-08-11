@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+	<title>Experiment</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+  	<script src="js/snap.svg-min.js"></script>
+    <script src="../jspsych_new.js"></script>
+  	<script src="../plugins/jspsych-text_adapted.js"></script>
+  	<script src="../plugins/jspsych-instructions.js"></script>
+  	<script src="../plugins/jspsych-html.js"></script>
+  	<script src="../plugins/jspsych-survey.js"></script>
+  	<script src="../plugins/jspsych-survey-text.js"></script>
+    <script src="../plugins/jspsych-fullscreen.js"></script>
+    <script src="../plugins/jspsych-button-response.js"></script>
+  	<script src="./texts.js"></script>
+      <link rel="stylesheet" href="css/jquery-ui.css"></link>
+      <link rel="stylesheet" href="../css/jspsych.css" type="text/css"></link>
+      <meta charset="UTF-8">
+    <style>
+      img { width: 300px; }
+    </style>
+  </head>
+  <body>
+    <div id="jspsych-target"></div>
+	<div id="demo"></div>
+  </body>
+  <script>
+
+/******************************************************************************/
+/**************************   Initializing  ***********************************/
+
+var timeline = [];
+
+var vp_ID = jsPsych.randomization.randomID(16);
+var date = (new Date());
+var Datum = date.toUTCString();
+
+
+jsPsych.data.addProperties({
+	Datum: Datum,
+	VP: vp_ID
+	});
+
+
+/******************************************************************************/
+/******************************   trials  *************************************/
+
+/*Array of the 40 nonsense middle terms*/
+var middle_term = texts.middle_term.slice(0,2);
+
+/*Array of the 40 contents*/
+var terms = texts.terms.slice(0,2);
+
+/*Array of 40 random [1,0][0,1]-pairs to determine the believablility later on*/
+var belief = [];
+var beliefFirst = null;
+var beliefSecond = null;
+
+for (var i = 0; i < 2; i++){
+  var beliefFirst = Math.floor((Math.random()*2));
+  if (beliefFirst == 1) {beliefSecond = 0;}
+  else beliefSecond = 1;
+  belief[i] = [beliefFirst,beliefSecond];
+  var beliefFirst = null;
+  var beliefSecond = null;
+}
+
+var stimuli = [
+
+
+  {stimulus: /*Syllogism: EI2_01 , Valid: yes*/
+    '<div class = stimuli >'+
+    '<p>'+'No '+ terms[0][belief[0][0]] + ' are ' + middle_term[0] +'</p>'+
+    '<p>'+'Some '+ terms[0][belief[0][1]] +' are '+ middle_term[0] +'</p>'+'<hr />'+
+    '<p>'+'Therefore some '+ terms[0][belief[0][1]] +' are not '+terms[0][belief[0][0]] +'</p>' +
+    '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+    data: { Stimulus: 'EI2_O1_1' , Validity: 'valid' , Believabiliy: belief[0][0] , DirectionOfConclusion: 'forward', Subject: terms[0][belief[0][1]] , Predaicate: terms[0][belief[0][0]] , Middle: middle_term[0]}
+    },
+  {stimulus: /*Syllogism: EI2_01 , Valid: yes*/
+    '<div class = stimuli >'+
+    '<p>'+'No '+ terms[1][belief[1][0]] +' are '+ middle_term[1] +'</p>'+
+    '<p>'+'Some '+ terms[1][belief[1][1]] +' are '+ middle_term[1] +'</p>'+'<hr />'+
+    '<p>'+'Therefore some '+ terms[1][belief[1][1]] +' are not '+terms[1][belief[1][0]] +'</p>' +
+    '</div>'+ '<br>'+ '<br>'+ '<p class = prompt>Does this conclusion follow necessarily? </p>',
+    data: { Stimulus: 'EI2_01_2', Validity: 'valid' , Believabiliy: belief[1][0] , DirectionOfConclusion: 'forward', Subject: terms[1][belief[1][1]] , Predaicate: terms[1][belief[1][0]] , Middle: middle_term[1]}
+    },
+
+      ];
+
+var block = {
+  type: 'button-response', /*don't forget the corresponding script!*/
+  choices: ['Yes','I don`t know','No'],
+  is_html: true, /*this needs to be true, as the stimuli are in thml format*/
+  timeline: stimuli
+    }
+timeline.push(block);
+
+/******************************************************************************/
+/**************************   Data saving  ************************************/
+
+
+function saveData(subjectID, CSV, JSON){
+       $.ajax({
+          type: 'post',
+          cache: false,
+          url: '../store.php',
+          data: {subjectID: vp_ID, folder: "MaExp", csvStrings: CSV, dataAsJSON: JSON}
+       });
+      }
+
+var csvString = jsPsych.data.dataAsCSV();
+
+/* */
+  jsPsych.init({
+    display_element: $('#jspsych-target'),
+    timeline: timeline,
+    default_iti: 100,
+    on_finish: function(data){ saveData("filename.csv", jsPsych.data.dataAsCSV())}
+
+  });
+  </script>
+</html>
