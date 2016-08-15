@@ -49,15 +49,14 @@ function getPar(str,style){
   }
 
 
-
-
+myIP =
 
 jsPsych.data.addProperties({
 	date: date,
 	ID: Subject_ID,
-  IP:
-	});
+  IP: $.getJSON('//api.ipify.org?', function(data) {return data;})
 
+	});
 
 
 
