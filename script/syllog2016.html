@@ -49,17 +49,17 @@ function getPar(str,style){
   }
 
 
-myIP =
+var myIP = $.getJSON('//api.ipify.org', function(data) {var derp = JSON.stringify(data, null, 2); return derp;});
 
 jsPsych.data.addProperties({
 	date: date,
 	ID: Subject_ID,
-  IP: $.getJSON('//api.ipify.org?', function(data) {return data;})
+  IP: myIP
 
 	});
 
 
-
+//console.log(myIP)
 
 /******************************************************************************/
 /***************************   fullscreen  ************************************/
