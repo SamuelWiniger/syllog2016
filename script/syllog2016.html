@@ -49,18 +49,6 @@ function getPar(str,style){
   }
 
 
-var myIP = $.getJSON('//api.ipify.org?format=json', function(data) {return data.ip;});
-var tmpIP = JSON.stringify(myIP);
-window.alert(myIP)
-window.alert(tmpIP)
-
-jsPsych.data.addProperties({
-	date: date,
-	ID: Subject_ID,
-  IP: myIP
-
-	});
-
 
 
 
@@ -648,6 +636,30 @@ timeline.push(survey_p3);
 
 /******************************************************************************/
 /**************************   Data saving  ************************************/
+
+
+var myIP = $.getJSON('//api.ipify.org');
+
+//var tmpIP = JSON.stringify(myIP.responseText);
+// console.log(myIP);
+// console.dir(myIP);
+// window.alert(myIP);
+//console.log(myIP.responseText);
+//window.alert(myIP.responseText);
+
+// window.alert(tmpIP);
+
+jsPsych.data.addProperties({
+	date: date,
+	ID: Subject_ID,
+  IP: myIP.responseText,
+  egal: tmpIP
+	});
+
+
+
+
+
 
  var debriefing_block = {
         type: 'text',
