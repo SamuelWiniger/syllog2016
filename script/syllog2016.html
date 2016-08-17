@@ -85,7 +85,7 @@ var study_info = {
 	"<div class='center-content'><img src='uzhLogo.png' style='width:680px;height:78px'></img></div>"+
 	"<h3 style='text-align: center'>Study information</h3>"+
 	"<p>Please read the following information carefully.</p>"+
-	"<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about?</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>"+
+	"<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>"+
 	"<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you about 20 minutes. For compensation you will recieve 2$.</dd>"+
 	"<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>"+
 	"<dd>Participation is completely voluntary. If you decide to paricipate, you can withdraw at any time without stating any reason. "+
@@ -595,7 +595,7 @@ var q2 =["Do you have any training in formal logic (e.g. taken a course)?",
 var q3 = ["If you want to leave any comments, please wrtie them here:"];
 var opt1 = ["Male", "Female", "Other / No answer"];
 var opt2 = ["Working", "Student", "Seeking work", "Other"];
-var opt3 = ["University degree", "what else?",];
+var opt3 = ["Higher education (i.e. College, University etc. )", "what else?",];
 var opt4 = ["Yes", "No"]
 var opt5 = ["Reading", "Cinema", "Sports", "Going out", "Hiking", "Robot Rumble", "Golf", "Other:"];
 var opt6 = ["Yes (my data can be used).", "No (better not use my data)."];
@@ -640,7 +640,7 @@ jsPsych.data.addProperties({
   });
 
 /*Add IP address to data*/
-$.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+$.getJSON('//api.ipify.org?format=json', function(data) {
   var tempIP = JSON.stringify(data, null, 0);
   jsPsych.data.addProperties({
     IP: tempIP

@@ -7,14 +7,15 @@ texts.fullscreen = '<h2>Welcome</h2><p>This experiment will run in fullscreen mo
                      <p>Klick "Start experiment" to enter fullscreen mode and start the experiment.'
 
 
-texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion.\
-                                For each problem, your task is to decide whether the conclusion follows logically from the information given in the premises.<p> The premises — the information given — appear above the line and the conclusion appears below the line. You must assume that all the information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: Treat all information above the line as true and disregard all knowledge about the subject matter.\</p>\
+texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises followed by a conclusion.\
+                                For each problem, your task is to decide whether the conclusion follows logically from the information given in the premises.<p> The premises — the information given — appear above the line and the conclusion appears below the line.</p>\
                                <div class = stimuli >\
                                <p>All monkeys are mammals <br>\
                                <p>Some mammals are mortal </p>'+ '<hr /\
                                <p>Therefore some monkeys are mortal</p>' + '</div>' + '<br>'+ '<br>\
                                <p class = prompt> Does this conclusion follow necessarily? </p>\
-                               Assuming the truth of the premises, your task is then to decide whether or not the conclusion follows logically from the premises. You may Answer with s"Yes", "No" or "I don’t know"'
+                               <p>You must assume that all the information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: Treat all information above the line as true and disregard all knowledge about the subject matter.</p>\
+                               <p>Assuming the truth of the premises, your task is then to decide whether or not the conclusion follows logically from the premises. You may Answer with s"Yes", "No" or "I don’t know"</p>'
 
 texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises is not acceptable.</p>\
                                <p>If, and only if, you judge that a given conclusion logically follows from the information given you should chose “Yes”. If you think that the given conclusion does not necessarily follow from the information given you should chose “No”. If you can’t decide whether a conclusion follows logically you may chose „I don’t know“.</p>\
