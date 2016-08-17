@@ -634,11 +634,24 @@ timeline.push(survey_p3);
 /**************************   Data saving  ************************************/
 
 
-jsPsych.data.addProperties({
-	date: date,
-	ID: Subject_ID,
-  IP: $.getJSON('//api.ipify.org?')
-	});
+$.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+  var a = JSON.stringify(data, null, 2);
+  jsPsych.data.addProperties({
+  	date: date,
+  	ID: Subject_ID,
+    IP: a
+  	});
+});
+
+
+
+
+
+
+
+
+
+
 
  var debriefing_block = {
         type: 'text',
