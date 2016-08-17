@@ -34,9 +34,8 @@
 var timeline = [];
 
 var Subject_ID = jsPsych.randomization.randomID(16);
-var predate = (new Date());
-var date = predate.toUTCString();
-
+var tmpdate = (new Date());
+var date = tmpdate.toUTCString();
 
 
 var errStyle = "color:red;margin-top:200px;text-align:center;font-weight:bold;";
@@ -47,9 +46,6 @@ function getPar(str,style){
     }
     return "<div class='jspsych-display-element'><p style='"+style+"'>"+str+"</p><div>"
   }
-
-
-
 
 
 /******************************************************************************/
@@ -638,29 +634,11 @@ timeline.push(survey_p3);
 /**************************   Data saving  ************************************/
 
 
-var myIP = $.getJSON('//api.ipify.org');
-
-var tmpIP = JSON.stringify(myIP);
-var huereIP = JSON.parse(myIP);
-// console.log(myIP);
-// console.dir(myIP);
-// window.alert(myIP);
-//console.log(myIP.responseText);
-//window.alert(myIP.responseText);
-
-// window.alert(tmpIP);
-
 jsPsych.data.addProperties({
 	date: date,
 	ID: Subject_ID,
-  IP: myIP.responseText,
-  egal: tmpIP
+  IP: $.getJSON('//api.ipify.org?')
 	});
-
-
-
-
-
 
  var debriefing_block = {
         type: 'text',
