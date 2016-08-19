@@ -3,7 +3,7 @@ var texts = {};
 texts.fullscreen = '<h2>Welcome</h2><p>This experiment will run in fullscreen mode. The     following actions will terminate the experiment: </p>\
                      <ul><li>exiting fullscreen mode</li><li>tabbing out</li>\
                      <li>reloading the page</li><li>going "back" in your browser</li></ul>\
-                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e. radio, tv).<p>\
+                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).<p>\
                      <p>Click "Start experiment" to enter fullscreen mode and start the experiment.'
 
 
@@ -17,10 +17,10 @@ texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment 
                                <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
 
 texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises, is not acceptable.</p>\
-                               <ul><li>If and only if you judge that a conclusion follows  logically from the information given select "Yes".</li>\
-                               <li>If you think that the conclusion does not necessarily follow from the information given select "No".</li>\
-                               <li>If you can’t decide whether a conclusion follows logically select "I don’t know"</li>\
-                               <li>Always try seriously to decide whether or not a conclusion follows logically from the premises before selecting "I don’t know". </li>\
+                               <ul><li>If and only if you judge that a conclusion follows  necessarily from the information given select "Yes".</li>\
+                               <li>If you think that the conclusion does not follow necessarily from the information given select "No".</li>\
+                               <li>If you can’t decide whether a conclusion follows necessarily select "I don’t know"</li>\
+                               <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li>\
                                <li>It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</li></ul>'
 
 
@@ -29,9 +29,9 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
 
 texts.instructions_page_three = '<h2>Please note</h2>\
                                 <ul><li>You will solve 32 problems. There will be a break after half the trials.</li>\
-                                <li>No aides allowed: You must not make notes or draw diagrams of any kind to help you in this task!</li>\
+                                <li>No aids allowed: You must not make notes or draw diagrams of any kind to help you in this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
-                                <p>Proceeding will lead to an example problem. If you are unsure about the task, please go back now and read the instructions again.</p>'
+                                <p>Proceeding will lead to an example problem. If you are unsure about the task, please go back now and read the instructions again!</p>'
 
 
 
