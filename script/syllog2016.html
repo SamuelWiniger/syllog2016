@@ -137,7 +137,7 @@ var Example = {
   stimulus: '<div class = stimuli >'+
             '<p>All monkeys are aquinces <br>'+
             'Some aquinces are mortal </p>'+ '<hr />' +
-            '<p>Therefore Some monkeys are mortal</p>' + '</div>' + '<br>'+ '<br>'+
+            '<p>Therefore some monkeys are mortal</p>' + '</div>' + '<br>'+ '<br>'+
             '<p class = prompt>Does this conclusion follow necessarily? </p>' ,
   choices: ['Yes','I don`t know','No'],
   is_html: true
@@ -147,7 +147,7 @@ timeline.push(Example);
 var preLaunch = {
   type: 'button-response',
   stimulus:texts.preLaunch,
-  choices: ['Start'], /*damit kann man weiterklicken*/
+  choices: ['Start'],
   is_html: true,
         }
 timeline.push(preLaunch);
@@ -558,7 +558,8 @@ timeline.push(first_block);
 
 var break_block = {
   type: 'button-response',
-  stimulus:'<p class = center-content>You completed the first half. Keep up the good work!</p>',
+  stimulus:'<p class = center-content>You completed the first half. Keep up the good work!</p>\
+            <p class = center-content>Click "Continue" to get to the second half of the trials.</p>',
   choices: ['Continue'],
   is_html: true,
         }
@@ -592,10 +593,10 @@ var q1 = [
 var q2 =["Do you have any training in formal logic (e.g. taken a course)?",
 	"Here you see a list of hobbies. If you are reading these instructions please chose the option 'Other', and write 'I read the instructions'.",
 	"", "Did you solve all the taks conscientiously? (This question has no influence on your reward.)"];
-var q3 = ["If you want to leave any comments, please wrtie them here:"];
+var q3 = ["If you want to leave any comments, please write them below:"];
 var opt1 = ["Male", "Female", "Other / No answer"];
 var opt2 = ["Working", "Student", "Seeking work", "Other"];
-var opt3 = ["Higher education (i.e. College, University etc. )", "what else?",];
+var opt3 = ["Some high school","High school", "Higher education (i.e., college, university, etc. )", "Post graduate degree",];
 var opt4 = ["Yes", "No"]
 var opt5 = ["Reading", "Cinema", "Sports", "Going out", "Hiking", "Robot Rumble", "Golf", "Other:"];
 var opt6 = ["Yes (my data can be used).", "No (better not use my data)."];

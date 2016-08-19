@@ -107,7 +107,7 @@ jsPsych.plugins['survey'] = (function() {
       'type': 'submit',
       'id': plugin_id_name + '-next',
       'class': plugin_id_name + ' jspsych-btn',
-      'value': 'Weiter'
+      'value': 'Continue'
     }));
 
     $trial_form.submit(function(event) {
