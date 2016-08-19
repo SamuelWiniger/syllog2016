@@ -17,17 +17,11 @@ texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment 
                                <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
 
 texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises, is not acceptable.</p>\
-                               <p>If and only if you judge that a conclusion follows  logically from the information given select "Yes". If you think that the conclusion does not necessarily follow from the information given select "No". If you can’t decide whether a conclusion follows logically select "I don’t know".</p>\
-                               <p>Always try seriously to decide whether or not a conclusion follows logically from the premises before selecting "I don’t know".</p>\
-                               <p> It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</p>'
-
-
-
-                               <ul><li></li>\
-                               <li> </li>\
-                               <li> </li>\
-                               <li>  </li>\
-                               <li></li></ul>\
+                               <ul><li>If and only if you judge that a conclusion follows  logically from the information given select "Yes".</li>\
+                               <li>If you think that the conclusion does not necessarily follow from the information given select "No".</li>\
+                               <li>If you can’t decide whether a conclusion follows logically select "I don’t know"</li>\
+                               <li>Always try seriously to decide whether or not a conclusion follows logically from the premises before selecting "I don’t know". </li>\
+                               <li>It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</li></ul>'
 
 
 
