@@ -3,16 +3,16 @@ var texts = {};
 texts.fullscreen = '<h2>Welcome</h2><p>This experiment will run in fullscreen mode. The     following actions will terminate the experiment: </p>\
                      <ul><li>exiting fullscreen mode</li><li>tabbing out</li>\
                      <li>reloading the page</li><li>going "back" in your browser</li></ul>\
-                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).<p>\
-                     <p>Click "Start experiment" to enter fullscreen mode and start the experiment.'
+                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).</p>\
+                     <p>Click "Start experiment" to enter fullscreen mode and start the experiment.</p>'
 
 
 texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises followed by a conclusion.\
                                 For each problem, your task is to decide whether the conclusion follows logically from the information given in the premises.<p> The premises appear above the line and the conclusion appears below the line. Note that the premises contain one nonsense term (e.g., aquinces). For example:</p>\
                                <div class = stimuli >\
-                               <p>All monkeys are aquinces <br>\
-                               <p>Some aquinces are mortal </p>'+ '<hr /\
-                               <p>Therefore some monkeys are mortal</p>' + '</div>'+ '<br>' + '<br>' +
+                               <p>All monkeys are aquinces</p><br>\
+                               <p>Some aquinces are mortal</p><hr/>\
+                               <p>Therefore some monkeys are mortal</p></div><br><br>' +
                                '<p>You must assume that all information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: Treat all information above the line as true and disregard all other knowledge about the subject matter.</p>\
                                <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
 
@@ -20,8 +20,8 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
                                <ul><li>If and only if you judge that a conclusion follows  necessarily from the information given select "Yes".</li>\
                                <li>If you think that the conclusion does not follow necessarily from the information given select "No".</li>\
                                <li>If you can’t decide whether a conclusion follows necessarily select "I don’t know"</li>\
-                               <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li>\
-                               <li>It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</li></ul>'
+                               <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li></ul>\
+                               <p>It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</p>'
 
 
 
@@ -146,13 +146,13 @@ texts.visibility_fail = "Your browser does not allow a visibility test. Please u
 texts.fullscreen_fail = "Your browser does not allow fullscreen mode. Please update your browser or switch to a different one for this experiment. We suggest Chrome oder Firefox."
 
 
-texts.empty_error = '<p id="empty_error" style="color:red;"><p>'
+texts.empty_error = '<p id="empty_error" style="color:red;"></p>'
 
 texts.button = "<div style='float:right;'><button id='jspsych-fullscreen-button'>Next</button></div>"
 
 texts.save = 'Please click on "Save". This will send us your data and you will recieve your code for the payment.'
 
-texts.debriefing = '<p><h3>Thank you for your participation!</h3>\
+texts.debriefing = '<h3>Thank you for your participation!</h3>\
                   <p>This code is your confirmation of participation: BBSYR_MA_2016_8</p>\
                    <p>WHAT NOW?</p>'
 

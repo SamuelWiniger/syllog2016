@@ -44,7 +44,7 @@ function getPar(str,style){
     if (typeof style == "undefined"){
       style='';
     }
-    return "<div class='jspsych-display-element'><p style='"+style+"'>"+str+"</p><div>"
+    return "<div class='jspsych-display-element'><p style='"+style+"'>"+str+"</p></div>"
   }
 
 
@@ -136,8 +136,8 @@ var Example = {
   type: 'button-response-syllog',
   stimulus: '<div class = stimuli >'+
             '<p>All monkeys are aquinces <br>'+
-            'Some aquinces are mortal </p>'+ '<hr />' +
-            '<p>Therefore some monkeys are mortal</p>' + '</div>' + '<br>'+ '<br>'+
+            'Some aquinces are mortal </p><hr />' +
+            '<p>Therefore some monkeys are mortal</p></div><br><br>' +
             '<p class = prompt>Does this conclusion follow necessarily? </p>' ,
   choices: ['Yes','I don`t know','No'],
   is_html: true
