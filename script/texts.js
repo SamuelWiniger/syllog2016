@@ -6,15 +6,27 @@ texts.fullscreen = '<h2>Welcome</h2><p>This experiment will run in fullscreen mo
                      <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).</p>\
                      <p>Click "Start experiment" to enter fullscreen mode and start the experiment.</p>'
 
+texts.study_info = 	"<div class='center-content'><img src='uzhLogo.png' style='width:680px;height:78px'></img></div>\
+	<h3 style='text-align: center'>Study information</h3>\
+	<p>Please read the following information carefully.</p>\
+	<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you about 20 minutes. For compensation you will recieve 2$.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>\
+	<dd>Participation is completely voluntary. If you decide to paricipate, you can withdraw at any time without stating any reason.\
+	To quit the experiment you simply have to close your browser window.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Possible risks and harms</dt><dd>No risks and harms are known to be caused by this experiment.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Confidentiality and anonymity</dt><dd>Your anonymity will always be preserved. No data will be collected, that lets one infer your identity. All data gathered can be made accessible to other researchers in anonymised form.</dd></dl><p style='font-size: 90%'>For further questions please contact: <br> Dr. Henrik Singmann, University of Zurich (singmann@psychologie.uzh.ch)</p>"
+
 
 texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises followed by a conclusion.\
                                 For each problem, your task is to decide whether the conclusion follows logically from the information given in the premises.<p> The premises appear above the line and the conclusion appears below the line. Note that the premises contain one nonsense term (e.g., aquinces). For example:</p>\
                                <div class = stimuli >\
-                               <p>All monkeys are aquinces</p><br>\
+                               <p>All monkeys are aquinces</p>\
                                <p>Some aquinces are mortal</p><hr/>\
                                <p>Therefore some monkeys are mortal</p></div><br><br>' +
                                '<p>You must assume that all information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: Treat all information above the line as true and disregard all other knowledge about the subject matter.</p>\
                                <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
+
 
 texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises, is not acceptable.</p>\
                                <ul><li>If and only if you judge that a conclusion follows  necessarily from the information given select "Yes".</li>\
@@ -23,26 +35,23 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
                                <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li></ul>\
                                <p>It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</p>'
 
-
-
-
-
 texts.instructions_page_three = '<h2>Please note</h2>\
-                                <ul><li>You will solve 32 problems. There will be a break after half the trials.</li>\
+                                <ul><li>You will solve 32 problems.</li>\
+                                <li>There will be a break after half the trials.</li>\
                                 <li>No aids allowed: You must not make notes or draw diagrams of any kind to help you in this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
                                 <p>Proceeding will lead to an example problem. If you are unsure about the task, please go back now and read the instructions again!</p>'
 
 
-
-
-texts.preLaunch = '<h2>Keep in mind</h2>\
+texts.start_experiment = '<h2>Keep in mind</h2>\
               <ul><li>Please don’t use any external help (i.e., drawing diagramms).</li>\
               <li> If you think a conclusion follows necessarily select "Yes". </li>\
               <li> If you think a conclusion does not follow necessarily select "No". </li>\
               <li> If you can’t decide whether a conclusion follows necessarily select "I don’t know".  </li>\
                   <li>"Some" means "at least one, possibly all".</li></ul>\
                   <p>Click "Start" to begin the experiment.</p>'
+
+texts.break = '<p class = center-content>You completed the first half. Click "Continue" to get to the second half of the trials. Keep up the good work!</p>'
 
 texts.middle_term =  ['redes','wasses','foins','lebs','weens','punds','cofts','flamps','fosks','geets',
                       'chindles','brops','quinces','jubs','spashes','dathses','pives','swants','soats','stoges',
@@ -137,8 +146,6 @@ texts.terms_test = [['subject1','predicate1'],
                   ['subject40','predicate40']]
 
 
-
-
 texts.fullscreen_exit = 'You exited fullscreen mode. <br>The experiment is cancelled.'
 texts.visibility_exit = "You tried to switch to another program or tab.<br>The experiment is cancelled."
 
@@ -153,7 +160,7 @@ texts.button = "<div style='float:right;'><button id='jspsych-fullscreen-button'
 texts.save = 'Please click on "Save". This will send us your data and you will recieve your code for the payment.'
 
 texts.debriefing = '<h3>Thank you for your participation!</h3>\
-                  <p>This code is your confirmation of participation: BBSYR_MA_2016_8</p>\
-                   <p>WHAT NOW?</p>'
+                  <p>This code is your confirmation of participation: Syllog_2016_8_N2GK</p>\
+                   <p>Please write your code down somewhere, as you will need it to recieve your pay</p>'
 
 texts.end_fullscreen = '<p>To finish the experiment, we ask you to tell us something about yourself. Fullsreen mode will be exited for this.</p>'
