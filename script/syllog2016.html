@@ -167,7 +167,7 @@ for (var i = 0; i < 40; i++){
 /*Stimuli with random contents and believability*/
 var stimuli = [
 
-{stimulus: /*syllogism: EI2_01 , valid: yes*/
+{stimulus: /*syllogism: EI2_O1 , valid: yes*/
   '<div class = stimuli >\
   <p>No '+ terms[0][belief[0][0]] + ' are ' + middle_term[0] +'</p>\
   <p>Some '+ terms[0][belief[0][1]] +' are '+ middle_term[0] +'</p><hr />\
@@ -176,32 +176,32 @@ var stimuli = [
   believability: belief[0][0] ,
   data: { Stimulus: 'EI2_O1_1' , Figure: 2 , Validity: 'valid' , DirectionOfConclusion: 'forward', Subject: terms[0][belief[0][1]] , Predaicate: terms[0][belief[0][0]] , Middle: middle_term[0]}
   },
-{stimulus: /*syllogism: EI2_01 , valid: yes*/
+{stimulus: /*syllogism: EI2_O1 , valid: yes*/
   '<div class = stimuli >\
   <p>No '+ terms[1][belief[1][0]] +' are '+ middle_term[1] +'</p>\
   <p>Some '+ terms[1][belief[1][1]] +' are '+ middle_term[1] +'</p><hr />\
   <p>Therefore some '+ terms[1][belief[1][1]] +' are not '+terms[1][belief[1][0]] +'</p>\
   </div><br><br><p class = prompt>Does this conclusion follow necessarily?</p>',
   believability: belief[1][0] ,
-  data: { Stimulus: 'EI2_01_2', Figure: 2 , Validity: 'valid' , DirectionOfConclusion: 'forward', Subject: terms[1][belief[1][1]] , Predaicate: terms[1][belief[1][0]] , Middle: middle_term[1]}
+  data: { Stimulus: 'EI2_O1_2', Figure: 2 , Validity: 'valid' , DirectionOfConclusion: 'forward', Subject: terms[1][belief[1][1]] , Predaicate: terms[1][belief[1][0]] , Middle: middle_term[1]}
   },
-{stimulus: /*syllogism: EI3_01 valid: yes*/
+{stimulus: /*syllogism: EI3_O1 valid: yes*/
   '<div class = stimuli >\
   <p>No '+ middle_term[2] +' are '+ terms[2][belief[2][0]] +'</p>\
   <p>Some '+ middle_term[2] +' are '+ terms[2][belief[2][1]] +'</p><hr />\
   <p>Therefore some '+ terms[2][belief[2][1]] +' are not '+terms[2][belief[2][0]] +'</p>\
   </div><br><br><p class = prompt>Does this conclusion follow necessarily?</p>',
   believability: belief[2][0],
-  data: { Stimulus: 'EI3_01_1', Figure: 3 , Validity: 'valid', DirectionOfConclusion: 'forward', Subject: terms[2][belief[2][1]] , Predaicate: terms[2][belief[2][0]] , Middle: middle_term[2]}
+  data: { Stimulus: 'EI3_O1_1', Figure: 3 , Validity: 'valid', DirectionOfConclusion: 'forward', Subject: terms[2][belief[2][1]] , Predaicate: terms[2][belief[2][0]] , Middle: middle_term[2]}
   },
-{stimulus: /*syllogism: EI3_01 valid: yes*/
+{stimulus: /*syllogism: EI3_O1 valid: yes*/
   '<div class = stimuli >\
   <p>No '+ middle_term[3] +' are '+ terms[3][belief[3][0]] +'</p>\
   <p>Some '+ middle_term[3] +' are '+ terms[3][belief[3][1]] +'</p><hr />\
   <p>Therefore some '+ terms[3][belief[3][1]] +' are not '+terms[3][belief[3][0]] +'</p>\
   </div><br><br><p class = prompt>Does this conclusion follow necessarily?</p>',
   believability: belief[3][0],
-  data: { Stimulus: 'EI3_01_2', Figure: 3 , Validity: 'valid', DirectionOfConclusion: 'forward', Subject: terms[3][belief[3][1]] , Predaicate: terms[3][belief[3][0]] , Middle: middle_term[3]}
+  data: { Stimulus: 'EI3_O1_2', Figure: 3 , Validity: 'valid', DirectionOfConclusion: 'forward', Subject: terms[3][belief[3][1]] , Predaicate: terms[3][belief[3][0]] , Middle: middle_term[3]}
   },
 {stimulus: /*syllogism: EI4_O1 valid: yes*/
   '<div class = stimuli >\
