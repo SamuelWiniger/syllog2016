@@ -3,16 +3,16 @@ var texts = {};
 texts.fullscreen = '<h2>Welcome</h2><p>This experiment will run in fullscreen mode. The     following actions will terminate the experiment: </p>\
                      <ul><li>exiting fullscreen mode</li><li>tabbing out</li>\
                      <li>reloading the page</li><li>going "back" in your browser</li></ul>\
-                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).</p>\
+                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 15 to 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).</p>\
                      <p>Click "Start experiment" to enter fullscreen mode and start the experiment.</p>'
 
 texts.study_info = 	"<div class='center-content'><img src='uzhLogo.png' style='width:680px;height:78px'></img></div>\
 	<h3 style='text-align: center'>Study information</h3>\
 	<p>Please read the following information carefully.</p>\
 	<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>\
-	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you about 20 minutes. For compensation you will recieve 2$.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you 15 to 20 minutes. For compensation you will recieve 2$.</dd>\
 	<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>\
-	<dd>Participation is completely voluntary. If you decide to paricipate, you can withdraw at any time without stating any reason.\
+	<dd>Participation is completely voluntary. If you decide to participate, you can withdraw at any time without stating any reason.\
 	To quit the experiment you simply have to close your browser window.</dd>\
 	<dt style='font-size: 105%;line-height: 2;'>Possible risks and harms</dt><dd>No risks and harms are known to be caused by this experiment.</dd>\
 	<dt style='font-size: 105%;line-height: 2;'>Confidentiality and anonymity</dt><dd>Your anonymity will always be preserved. No data will be collected, that lets one infer your identity. All data gathered can be made accessible to other researchers in anonymised form.</dd></dl><p style='font-size: 90%'>For further questions please contact: <br> Dr. Henrik Singmann, University of Zurich (singmann@psychologie.uzh.ch)</p>"
@@ -33,14 +33,14 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
                                <li>If you think that the conclusion does not follow necessarily from the information given select "No".</li>\
                                <li>If you can’t decide whether a conclusion follows necessarily select "I don’t know".</li>\
                                <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li></ul>\
-                               <p>It is also noteworthy that in the context of logic the quantifier "some" means "at least one, possibly all".</p>'
+                               <p>It is also noteworthy that in the context of logic "some" means "at least one, possibly all".</p>'
 
-texts.instructions_page_three = '<h2>Please note</h2>\
+texts.instructions_page_three = '<h2>Overview</h2>\
                                 <ul><li>You will solve 32 problems.</li>\
                                 <li>There will be a break after half the trials.</li>\
-                                <li>No aids allowed: You must not make notes or draw diagrams of any kind to help you in this task!</li>\
+                                <li>No aids allowed: You must not make notes or draw diagrams of any kind to help you with this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
-                                <p>Proceeding will lead to an example problem. If you are unsure about the task, please go back now and read the instructions again!</p>'
+                                <p>Proceeding will lead to an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
 
 
 texts.start_experiment = '<h2>Keep in mind</h2>\
@@ -160,7 +160,7 @@ texts.button = "<div style='float:right;'><button id='jspsych-fullscreen-button'
 texts.save = 'Please click on "Save". This will send us your data and you will recieve your code for the payment.'
 
 texts.debriefing = '<h3>Thank you for your participation!</h3>\
-                  <p>This code is your confirmation of participation: Syllog_2016_N2GK</p>\
-                   <p>Please write your code down somewhere, as you will need it to recieve your pay.</p>'
+                  <p>Your confirmation code is: Syllog_2016_N2GK</p>\
+                   <p>Please copy this code and enter it to recieve your payment.</p>'
 
 texts.end_fullscreen = '<p>To finish the experiment, we ask you to tell us something about yourself. Fullsreen mode will be exited for this.</p>'
