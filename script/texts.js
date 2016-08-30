@@ -10,7 +10,7 @@ texts.study_info = 	"<div class='center-content'><img src='uzhLogo.png' style='w
 	<h3 style='text-align: center'>Study information</h3>\
 	<p>Please read the following information carefully.</p>\
 	<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>\
-	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you 15 to 20 minutes. For compensation you will recieve 2$.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you 15 to 20 minutes. For compensation you will recieve $2.</dd>\
 	<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>\
 	<dd>Participation is completely voluntary. If you decide to participate, you can withdraw at any time without stating any reason.\
 	To quit the experiment you simply have to close your browser window.</dd>\
@@ -28,7 +28,7 @@ texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment 
                                <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
 
 
-texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises, is not acceptable.</p>\
+texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises, is considered an error.</p>\
                                <ul><li>If and only if you judge that a conclusion follows  necessarily from the information given select "Yes".</li>\
                                <li>If you think that the conclusion does not follow necessarily from the information given select "No".</li>\
                                <li>If you can’t decide whether a conclusion follows necessarily select "I don’t know".</li>\
@@ -40,7 +40,7 @@ texts.instructions_page_three = '<h2>Overview</h2>\
                                 <li>There will be a break after half the trials.</li>\
                                 <li>No aids allowed: You must not make notes or draw diagrams of any kind to help you with this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
-                                <p>Proceeding will lead to an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
+                                <p>The next slide will include an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
 
 
 texts.start_experiment = '<h2>Keep in mind</h2>\
