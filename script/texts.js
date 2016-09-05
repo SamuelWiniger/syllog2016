@@ -51,7 +51,7 @@ texts.start_experiment = '<h2>Keep in mind</h2>\
                   <li>"Some" means "at least one, possibly all".</li></ul>\
                   <p>Click "Start" to begin the experiment.</p>'
 
-texts.break = '<p class = center-content>You completed the first half. Click "Continue" to get to the second half of the trials. Keep up the good work!</p>'
+texts.break = '<p class = center-content>You completed the first half. Click "Continue" to get to the second half of the trials.</p> <p class = center-content>Keep up the good work!</p>'
 
 texts.middle_term =  ['redes','wasses','foins','lebs','weens','punds','cofts','flamps','fosks','geets',
                       'chindles','brops','quinces','jubs','spashes','dathses','pives','swants','soats','stoges',

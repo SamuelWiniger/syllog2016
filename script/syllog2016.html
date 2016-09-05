@@ -149,7 +149,7 @@ timeline.push(start_experiment);
 var middle_term = jsPsych.randomization.shuffle(texts.middle_term);
 
 /*Array of the 40 contents*/
-var terms = jsPsych.randomization.shuffle(texts.terms_test);
+var terms = jsPsych.randomization.shuffle(texts.terms);
 
 ///lull///
 var order = [];
@@ -569,13 +569,13 @@ var first_block = {
     }
 timeline.push(first_block);
 
-var first_block = {
-  stimulus: 'This is a pause',
+var break_block = {
+  stimulus: texts.break,
   type: 'button-response',
   choices: ['Continue'],
   is_html: true
     }
-timeline.push(first_block);
+timeline.push(break_block);
 
 var second_block = {
   type: 'button-response',
