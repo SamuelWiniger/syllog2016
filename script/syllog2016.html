@@ -562,7 +562,7 @@ var rand_stimuli_first_block = jsPsych.randomization.shuffle(stimuli_first_block
 var rand_stimuli_second_block = jsPsych.randomization.shuffle(stimuli_second_block);
 
 var first_block = {
-  type: 'button-response',
+  type: 'button-response-syllog',
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
   timeline: rand_stimuli_first_block
@@ -578,7 +578,7 @@ var break_block = {
 timeline.push(break_block);
 
 var second_block = {
-  type: 'button-response',
+  type: 'button-response-syllog',
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
   timeline: rand_stimuli_second_block
