@@ -21,7 +21,6 @@ jsPsych.plugins["button-response-syllog"] = (function() {
     trial.timing_response = trial.timing_response || -1; // if -1, then wait for response forever
     trial.is_html = (typeof trial.is_html === 'undefined') ? false : trial.is_html;
     trial.prompt = (typeof trial.prompt === 'undefined') ? "" : trial.prompt;
-    trial.believability = trial.believability;
     // if any trial variables are functions
     // this evaluates the function and replaces
     // it with the output of the function
@@ -115,15 +114,11 @@ jsPsych.plugins["button-response-syllog"] = (function() {
         clearTimeout(setTimeoutHandlers[i]);
       }
 
-      if(trial.believability == 0) {var believability = "unbelievable"}
-      else if(trial.believability == 1){var believability = "believable"}
-
       // gather the data to store for the trial
       var trial_data = {
         "rt": response.rt,
         "stimulus": trial.stimulus,
-        "button_pressed": response.button,
-        "believability": believability
+        "button_pressed": response.button
       };
 
       // clear the display
