@@ -53,10 +53,10 @@ texts.start_experiment = '<h2>Keep in mind</h2>\
 
 texts.break = '<p class = center-content>You completed the first half. Click "Continue" to get to the second half of the trials.</p> <p class = center-content>Keep up the good work!</p>'
 
-texts.middle_term =  ['redes','wasses','foins','lebs','weens','punds','cofts','flamps','fosks','geets',
-                      'chindles','brops','quinces','jubs','spashes','dathses','pives','swants','soats','stoges',
-                      'loaxes','parfs','fimps','darms','pields','cronxes','sonds','crots','stoals','fises',
-                      'brams','vosts','decottions','firters','pumes','punties','curges','hoons','heets','trinnels']
+texts.middle_term =  ['redes','wasses','foins','lebs','sothods','punds','cofts','flamps','fosks','gruts',
+                      'chindles','brops','piffures','jubs','spashes','dathses','pives','veemers','soats','vennars',
+                      'loaxes','parfs','fimps','goples','pields','cronxes','sonds','crots','stoals','fises',
+                      'brams','vosts','decottions','firters','pumes','punties','curges','boodings','heets','trinnels']
 
 texts.terms = [['buildings','skyscrapers'],
                    ['electric appliances','video recorders'],
