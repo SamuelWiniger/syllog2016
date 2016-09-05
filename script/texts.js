@@ -163,4 +163,4 @@ texts.debriefing = '<h3>Thank you for your participation!</h3>\
                   <p>Your confirmation code is: Syllog_2016_N2GK</p>\
                    <p>Please copy this code and enter it to recieve your payment.</p>'
 
-texts.end_fullscreen = '<p>To finish the experiment, we ask you to tell us something about yourself. Fullsreen mode will be exited for this.</p>'
+texts.end_fullscreen = '<p>To finish the experiment, we ask you to tell us something about yourself. Fullscreen mode will be exited for this.</p>'
