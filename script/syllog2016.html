@@ -604,17 +604,17 @@ var q1 = [
   "What is the highest degree or level of education you have completed?"];
 var q2 =["Do you have any training in formal logic (e.g., taken a course)?",
 	"Do you have programming experience in more than one programming language?",
+  "Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent).",
   "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];//ask Peter which is better.
-var q3 = ["Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent)."];
-var scale = ["1","2","3","4","5","6","7","8","9","10"];
+var q3 = ["If you want to leave any comments, please write them below:"];
 
-var q4 = ["If you want to leave any comments, please write them below:"];
 var opt1 = ["Male", "Female", "Other / No answer"];
 var opt2 = ["Working", "Student", "Seeking work", "Other"];
 var opt3 = ["Less than high school","High school graduate", "Some higher education, no degree", "Higher education (e.g., bachelor's degree, associate degree)", "Post graduate degree (e.g., master's degree, doctorate degree)",];
 var opt4 = ["Yes", "No"]
 var opt5 = ["Yes", "No",];
-var opt6 = ["Yes (my data can be used)", "No (better not use my data)"];
+var opt6 = ["1 (elementary school level)","2","3","4","5","6","7","8","9","10 (PhD in math or equivalent)"];
+var opt7 = ["Yes (my data can be used)", "No (better not use my data)"];
 
 var survey_p1 = {
 	type: 'survey',
@@ -627,21 +627,14 @@ timeline.push(survey_p1);
 var survey_p2 = {
 	type: 'survey-multi-choice',
 	questions: q2,
-	options: [opt4, opt5, opt6],
-	required: [true, true, true]
+	options: [opt4, opt5, opt6, opt7],
+	required: [true, true, true, true]
 };
 timeline.push(survey_p2);
 
 var survey_p3 = {
-type: 'survey-likert',
-questions: q3,
-labels: [scale]
-};
-timeline.push(survey_p3);
-
-var survey_p4 = {
 	type: 'survey-text',
-	questions: q4,
+	questions: q3,
 	rows: [5],
 	columns: [90],
 	preamble: getPar(texts.save),
@@ -651,7 +644,7 @@ var survey_p4 = {
 				saveData(Subject_ID, csvString, jsonString)
 			}
 };
-timeline.push(survey_p4);
+timeline.push(survey_p3);
 
 /******************************************************************************/
 /**************************   Data saving  ************************************/
