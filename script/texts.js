@@ -24,7 +24,7 @@ texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment 
                                <p>All monkeys are aquinces</p>\
                                <p>Some aquinces are mortal</p><hr/>\
                                <p>Therefore some monkeys are mortal</p></div><br><br>' +
-                               '<p>You must assume that all information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: Treat all information above the line as true and disregard all other knowledge about the subject matter.</p>\
+                               '<p>You must assume that all information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: <b>Treat all information above the line as true and disregard all other knowledge about the subject matter.</b></p>\
                                <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
 
 
@@ -38,13 +38,14 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
 texts.instructions_page_three = '<h2>Overview</h2>\
                                 <ul><li>You will solve 32 problems.</li>\
                                 <li>There will be a break after half the trials.</li>\
-                                <li>No aids allowed: You must not make notes or draw diagrams of any kind to help you with this task!</li>\
+                                <li>Do not use any aids: You must not make notes or draw diagrams of any kind to help you with this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
                                 <p>The next slide will include an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
 
 
 texts.start_experiment = '<h2>Keep in mind</h2>\
-              <ul><li>Please don’t use any external help (i.e., drawing diagramms).</li>\
+              <ul><li>Treat all information above the line as true and disregard all other knowledge about the subject matter.</li>\
+              <li>Please don’t use any external help (i.e., drawing diagramms).</li>\
               <li> If you think a conclusion follows necessarily select "Yes". </li>\
               <li> If you think a conclusion does not follow necessarily select "No". </li>\
               <li> If you can’t decide whether a conclusion follows necessarily select "I don’t know".  </li>\
