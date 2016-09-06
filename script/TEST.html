@@ -426,7 +426,7 @@ var stimulus20 = [
   data: { Stimulus: 'AO1_O1_u', Figure: 1 , Validity: 'invalid', Believability: 'unbelievable' ,DirectionOfConclusion: 'forward', Subject: terms[39][1] , Predicate: terms[39][0] , Middle: middle_term[39], Terms: terms[39]}
 }];
 
-var pre_stimuli = [ [stimulus1[order[0][0]],stimulus1[order[0][1]]],
+var invalid_stimuli = [[stimulus1[order[0][0]],stimulus1[order[0][1]]],
                     [stimulus2[order[1][0]],stimulus2[order[1][1]]],
                     [stimulus3[order[2][0]],stimulus3[order[2][1]]],
                     [stimulus4[order[3][0]],stimulus4[order[3][1]]],
@@ -437,8 +437,9 @@ var pre_stimuli = [ [stimulus1[order[0][0]],stimulus1[order[0][1]]],
                     [stimulus9[order[8][0]],stimulus9[order[8][1]]],
                     [stimulus10[order[9][0]],stimulus10[order[9][1]]],
                     [stimulus11[order[10][0]],stimulus11[order[10][1]]],
-                    [stimulus12[order[11][0]],stimulus12[order[11][1]]],
-                    [stimulus13[order[12][0]],stimulus13[order[12][1]]],
+                    [stimulus12[order[11][0]],stimulus12[order[11][1]]]];
+
+var valid_stimuli = [[stimulus13[order[12][0]],stimulus13[order[12][1]]],
                     [stimulus14[order[13][0]],stimulus14[order[13][1]]],
                     [stimulus15[order[14][0]],stimulus15[order[14][1]]],
                     [stimulus16[order[15][0]],stimulus16[order[15][1]]],
@@ -448,15 +449,27 @@ var pre_stimuli = [ [stimulus1[order[0][0]],stimulus1[order[0][1]]],
                     [stimulus20[order[19][0]],stimulus20[order[19][1]]]
                   ];
 
+var pre_valid = jsPsych.randomization.shuffle(invalid_stimuli);
+var pre_invalid = jsPsych.randomization.shuffle(valid_stimuli);
+
+var sliceI = Math.floor(Math.random()*3)+7;
+var sliceV = 16 - sliceI;
+
+window.alert(sliceI);
+window.alert(sliceV);
+
+var sliced_invalid = pre_invalid.slice(0,sliceI);
+var sliced_valid = pre_valid.slice(0,sliceV);
+
+var pre_stimuli = sliced_invalid.concat(sliced_valid);
 var stimuli = jsPsych.randomization.shuffle(pre_stimuli);
-var stimuli_cut = stimuli.slice(0,16);
 
 var stimuli_first_block = [];
 var stimuli_second_block = [];
 
 for (var k = 0; k < 16; k++){
-  stimuli_first_block.push(stimuli_cut[k][0]);
-  stimuli_second_block.push(stimuli_cut[k][1]);
+  stimuli_first_block.push(stimuli[k][0]);
+  stimuli_second_block.push(stimuli[k][1]);
 }
 
 var rand_stimuli_first_block = jsPsych.randomization.shuffle(stimuli_first_block);
