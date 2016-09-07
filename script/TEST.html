@@ -426,7 +426,7 @@ var stimulus20 = [
   data: { Stimulus: 'AO1_O1_u', Figure: 1 , Validity: 'invalid', Believability: 'unbelievable' ,DirectionOfConclusion: 'forward', Subject: terms[39][1] , Predicate: terms[39][0] , Middle: middle_term[39], Terms: terms[39]}
 }];
 
-var invalid_stimuli = [[stimulus1[order[0][0]],stimulus1[order[0][1]]],
+var stimuli = [[stimulus1[order[0][0]],stimulus1[order[0][1]]],
                     [stimulus2[order[1][0]],stimulus2[order[1][1]]],
                     [stimulus3[order[2][0]],stimulus3[order[2][1]]],
                     [stimulus4[order[3][0]],stimulus4[order[3][1]]],
@@ -437,9 +437,8 @@ var invalid_stimuli = [[stimulus1[order[0][0]],stimulus1[order[0][1]]],
                     [stimulus9[order[8][0]],stimulus9[order[8][1]]],
                     [stimulus10[order[9][0]],stimulus10[order[9][1]]],
                     [stimulus11[order[10][0]],stimulus11[order[10][1]]],
-                    [stimulus12[order[11][0]],stimulus12[order[11][1]]]];
-
-var valid_stimuli = [[stimulus13[order[12][0]],stimulus13[order[12][1]]],
+                    [stimulus12[order[11][0]],stimulus12[order[11][1]]],
+                    [stimulus13[order[12][0]],stimulus13[order[12][1]]],
                     [stimulus14[order[13][0]],stimulus14[order[13][1]]],
                     [stimulus15[order[14][0]],stimulus15[order[14][1]]],
                     [stimulus16[order[15][0]],stimulus16[order[15][1]]],
@@ -449,20 +448,19 @@ var valid_stimuli = [[stimulus13[order[12][0]],stimulus13[order[12][1]]],
                     [stimulus20[order[19][0]],stimulus20[order[19][1]]]
                   ];
 
-var pre_valid = jsPsych.randomization.shuffle(invalid_stimuli);
-var pre_invalid = jsPsych.randomization.shuffle(valid_stimuli);
+var found = false;
 
-var sliceI = Math.floor(Math.random()*3)+7;
-var sliceV = 16 - sliceI;
+while (!found) {
+  var tmp_stimuli = jsPsych.randomization.shuffle(stimuli);
+  var slice_stimuli = tmp_stimuli.slice(0,16);
+  n_valid = 0;
+  for (var i = 0; i < slice_stimuli.length; i++) {
+    if (slice_stimuli[i][0].data.Validity == "valid") n_valid++;
+  }
+  if (n_valid >= 7) found = true;
+}
 
-window.alert(sliceI);
-window.alert(sliceV);
-
-var sliced_invalid = pre_invalid.slice(0,sliceI);
-var sliced_valid = pre_valid.slice(0,sliceV);
-
-var pre_stimuli = sliced_invalid.concat(sliced_valid);
-var stimuli = jsPsych.randomization.shuffle(pre_stimuli);
+var stimuli = slice_stimuli;
 
 var stimuli_first_block = [];
 var stimuli_second_block = [];
@@ -475,10 +473,20 @@ for (var k = 0; k < 16; k++){
 var rand_stimuli_first_block = jsPsych.randomization.shuffle(stimuli_first_block);
 var rand_stimuli_second_block = jsPsych.randomization.shuffle(stimuli_second_block);
 
+
 var first_block = {
   type: 'button-response-syllog',
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
+  on_finish: function(data){
+   var correct = "no";
+   if(data.Validity == "valid" &&  data.button_pressed == "yes" || data.Validity == "invalid" &&  data.button_pressed == "no" ){
+     correct = "yes";
+   } else if(data.button_pressed == "I don`t know"){
+     correct = "idk";
+   }
+   jsPsych.data.addDataToLastTrial({correct: correct});
+    },
   timeline: rand_stimuli_first_block
     }
 timeline.push(first_block);
@@ -495,16 +503,60 @@ var second_block = {
   type: 'button-response-syllog',
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
+  on_finish: function(data){
+  var correct = "no";
+  if(data.Validity == "valid" &&  data.button_pressed == "yes" || data.Validity == "invalid" &&  data.button_pressed == "no" ){
+    correct = "yes";
+  } else if(data.button_pressed == "I don`t know"){
+    correct = "idk";
+  }
+  jsPsych.data.addDataToLastTrial({correct: correct});
+   },
   timeline: rand_stimuli_second_block
     }
 timeline.push(second_block);
 
 
+function getSubjectData() {
+
+  var eval = jsPsych.data.getTrialsOfType('button-response-syllog');
+
+  var n_cor = 0;
+  var n_idk = 0;
+  var n_inc = 0;
+
+  for (var i = 0; i < eval.length; i++) {
+    if (eval[i].correct == "yes") {n_cor++;}
+    if (eval[i].correct == "no") {n_idk++;}
+    if (eval[i].correct == "idk") {n_inc++;}
+    }
+console.log(eval.length)
+  return {
+    perc_cor: n_cor/(eval.length - n_idk),
+    idk: n_idk,
+    per_inc: n_inc/(eval.length - n_idk)
+  }
+}
+
+var debrief_block = {
+  type: "text",
+  text: function() {
+    var subject_data = getSubjectData();
+    return "<p>You responded correctly on "+subject_data.perc_cor+"% of "+
+    "the trials.</p><p>You ommited "+subject_data.idk+" trials.</p><p>You responded incorrectly on "+subject_data.per_inc+"% of "+
+    "the trials.</p>";
+  }
+};
+timeline.push(debrief_block);
+
 
 jsPsych.init({
     display_element: $('#jspsych-target'),
     timeline: timeline,
-	  default_iti: 100
+	  default_iti: 100,
+    on_finish: function() {
+     jsPsych.data.displayData();
+   }
   });
   </script>
 </html>
