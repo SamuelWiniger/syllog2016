@@ -480,9 +480,10 @@ var first_block = {
   is_html: true,
   on_finish: function(data){
    var correct = "no";
-   if(data.Validity == "valid" &&  data.button_pressed == "yes" || data.Validity == "invalid" &&  data.button_pressed == "no" ){
+   if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
      correct = "yes";
-   } else if(data.button_pressed == "I don`t know"){
+   }
+   if(data.button_pressed == "I don`t know"){
      correct = "idk";
    }
    jsPsych.data.addDataToLastTrial({correct: correct});
@@ -505,9 +506,10 @@ var second_block = {
   is_html: true,
   on_finish: function(data){
   var correct = "no";
-  if(data.Validity == "valid" &&  data.button_pressed == "yes" || data.Validity == "invalid" &&  data.button_pressed == "no" ){
+  if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
     correct = "yes";
-  } else if(data.button_pressed == "I don`t know"){
+  }
+  if(data.button_pressed == "I don`t know"){
     correct = "idk";
   }
   jsPsych.data.addDataToLastTrial({correct: correct});
@@ -527,14 +529,14 @@ function getSubjectData() {
 
   for (var i = 0; i < eval.length; i++) {
     if (eval[i].correct == "yes") {n_cor++;}
-    if (eval[i].correct == "no") {n_idk++;}
-    if (eval[i].correct == "idk") {n_inc++;}
+    if (eval[i].correct == "idk") {n_idk++;}
+    if (eval[i].correct == "no") {n_inc++;}
     }
 console.log(eval.length)
   return {
-    perc_cor: n_cor/(eval.length - n_idk),
+    perc_cor: Math.floor(n_cor/(eval.length - n_idk)*100),
     idk: n_idk,
-    per_inc: n_inc/(eval.length - n_idk)
+    per_inc: Math.floor(n_inc/(eval.length - n_idk)*100),
   }
 }
 
