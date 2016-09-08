@@ -3,14 +3,14 @@ var texts = {};
 texts.fullscreen = '<h2>Welcome</h2><p>This experiment will run in fullscreen mode. The     following actions will terminate the experiment: </p>\
                      <ul><li>exiting fullscreen mode</li><li>tabbing out</li>\
                      <li>reloading the page</li><li>going "back" in your browser</li></ul>\
-                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 15 to 20 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).</p>\
+                     <p>Please close other programs and disable notifications.</p><p> Make sure you can work for 10 to 15 minutes without any interruption. Please avoid any distractions (i.e., radio, tv).</p>\
                      <p>Click "Start experiment" to enter fullscreen mode and start the experiment.</p>'
 
 texts.study_info = 	"<div class='center-content'><img src='uzhLogo.png' style='width:680px;height:78px'></img></div>\
 	<h3 style='text-align: center'>Study information</h3>\
 	<p>Please read the following information carefully.</p>\
 	<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>\
-	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you 15 to 20 minutes. For compensation you will recieve $2.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you 10 to 15 minutes. For compensation you will recieve $0.75 with a possible additional $0.75, depending on your performance.</dd>\
 	<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>\
 	<dd>Participation is completely voluntary. If you decide to participate, you can withdraw at any time without stating any reason.\
 	To quit the experiment you simply have to close your browser window.</dd>\
@@ -35,12 +35,18 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
                                <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li></ul>\
                                <p>It is also noteworthy that in the context of logic "some" means "at least one, possibly all".</p>'
 
-texts.instructions_page_three = '<h2>Overview</h2>\
+texts.instructions_page_four = '<h2>Overview</h2>\
                                 <ul><li>You will solve 32 problems.</li>\
                                 <li>There will be a break after half the trials.</li>\
                                 <li>Do not use any aids: You must not make notes or draw diagrams of any kind to help you with this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
                                 <p>The next slide will include an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
+
+texts.instructions_page_three = '<h2>The bonus</h2>\
+                                <p>You get a bonus of $0.75 if you solve at least 60% of the problems correctly.</p><p> For this we only count preoblems where you selected "yes" or "no". Problems where you selected "I don’t know" do not influence your chances of getting the bonus. </p>'
+
+
+
 
 
 texts.start_experiment = '<h2>Keep in mind</h2>\
@@ -49,7 +55,8 @@ texts.start_experiment = '<h2>Keep in mind</h2>\
               <li> If you think a conclusion follows necessarily select "Yes". </li>\
               <li> If you think a conclusion does not follow necessarily select "No". </li>\
               <li> If you can’t decide whether a conclusion follows necessarily select "I don’t know".  </li>\
-                  <li>"Some" means "at least one, possibly all".</li></ul>\
+                  <li>"Some" means "at least one, possibly all".</li>\
+                  <li>Respond correcrtly on at least 60% of the trials to get the additional $0.75.</li></ul>\
                   <p>Click "Start" to begin the experiment.</p>'
 
 texts.break = '<p class = center-content>You completed the first half. Click "Continue" to get to the second half of the trials.</p> <p class = center-content>Keep up the good work!</p>'
