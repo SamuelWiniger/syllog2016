@@ -578,11 +578,11 @@ var first_block = {
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
   on_finish: function(data){
-   var correct = "";
+   var correct = "incorrect";
    if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
-     correct = "yes";
+     correct = "correct";
    }
-   if(data.button_pressed == "I don`t know"){
+   if(data.button_pressed == "I don't know"){
      correct = "idk";
    }
    jsPsych.data.addDataToLastTrial({correct: correct});
@@ -604,11 +604,11 @@ var second_block = {
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
   on_finish: function(data){
-  var correct = "";
+  var correct = "incorrect";
   if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
-    correct = "yes";
+    correct = "correct";
   }
-  if(data.button_pressed == "I don`t know"){
+  if(data.button_pressed == "I don't know"){
     correct = "idk";
   }
   jsPsych.data.addDataToLastTrial({correct: correct});
@@ -626,7 +626,7 @@ function getSubjectData() {
   var n_idk = 0;
 
   for (var i = 0; i < eval.length; i++) {
-    if (eval[i].correct == "yes") {n_cor++;}
+    if (eval[i].correct == "correct") {n_cor++;}
     if (eval[i].correct == "idk") {n_idk++;}
     }
 
@@ -637,8 +637,8 @@ function getSubjectData() {
           }
 
   bonus = "";
-  if(perc_cor >= 60){ bonus = "<p>You qualify for the bonus.</p>";}
-  else if(perc_cor < 60){ bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";}
+  if(perc_cor >= 60){ bonus = "<p>Congratulations, you get the bonus.</p>";}
+  else if(perc_cor < 60){ bonus = "<p>Unfortunately, you do not get the bonus.</p>";}
 
   return {
     perc_cor: perc_cor,

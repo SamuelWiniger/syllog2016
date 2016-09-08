@@ -10,7 +10,7 @@ texts.study_info = 	"<div class='center-content'><img src='uzhLogo.png' style='w
 	<h3 style='text-align: center'>Study information</h3>\
 	<p>Please read the following information carefully.</p>\
 	<dl><dt style='font-size: 105%;line-height: 2;'>What this study is about</dt><dd> The goal of this experiment is to investigate how people solve logical problems consisting of sets of premises and a conclusion (syllogisms).</dd>\
-	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take you 10 to 15 minutes. For compensation you will recieve $0.75 with a possible additional $0.75, depending on your performance.</dd>\
+	<dt style='font-size: 105%;line-height: 2;'>Duration and pay</dt><dd>This experiment will take 10 to 15 minutes. As compensation you recieve $0.75. Depending on your performance you can receive a bonus of an additional $0.75.</dd>\
 	<dt style='font-size: 105%;line-height: 2;'>Conditions of participation</dt>\
 	<dd>Participation is completely voluntary. If you decide to participate, you can withdraw at any time without stating any reason.\
 	To quit the experiment you simply have to close your browser window.</dd>\
@@ -25,14 +25,14 @@ texts.instructions_page_one = '<h2>Your task</h2><p>The goal of this experiment 
                                <p>Some aquinces are mortal</p><hr/>\
                                <p>Therefore some monkeys are mortal</p></div><br><br>' +
                                '<p>You must assume that all information given in the premises (i.e., above the line) is true; this is very important! To make this very clear: <b>Treat all information above the line as true and disregard all other knowledge about the subject matter.</b></p>\
-                               <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don’t know".</p>'
+                               <p>Assuming the truth of the premises, your task is to decide whether or not the conclusion follows logically from the premises. You can answer with "Yes", "No" or "I don\'t know".</p>'
 
 
 texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that according to the rules of logic, you can only endorse a conclusion if it necessarily follows from the information given. A conclusion that is merely possible, but not necessitated by the premises, is considered an error.</p>\
                                <ul><li>If and only if you judge that a conclusion follows  necessarily from the information given select "Yes".</li>\
                                <li>If you think that the conclusion does not follow necessarily from the information given select "No".</li>\
-                               <li>If you can’t decide whether a conclusion follows necessarily select "I don’t know".</li>\
-                               <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don’t know". </li></ul>\
+                               <li>If you can\'t decide whether a conclusion follows necessarily select "I don\'t know".</li>\
+                               <li>Always try seriously to decide whether or not a conclusion follows necessarily from the premises before selecting "I don\'t know". </li></ul>\
                                <p>It is also noteworthy that in the context of logic "some" means "at least one, possibly all".</p>'
 
 texts.instructions_page_four = '<h2>Overview</h2>\
@@ -43,7 +43,7 @@ texts.instructions_page_four = '<h2>Overview</h2>\
                                 <p>The next slide will include an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
 
 texts.instructions_page_three = '<h2>The bonus</h2>\
-                                <p>You get a bonus of $0.75 if you solve at least 60% of the problems correctly.</p><p> For this we only count preoblems where you selected "yes" or "no". Problems where you selected "I don’t know" do not influence your chances of getting the bonus. </p>'
+                                <p>You get a bonus of $0.75 if you solve at least 60% of the problems correctly.</p><p> Note that we only count problems in which you selected "yes" or "no" for assessing your performance. <b>Problems in which you selected "I don\'t know" do not count for the bonus</b>. In other words, if you are unsure whether a conclusion follows necessarily selecting "I don\'t know" can help you get the bonus.</p>'
 
 
 
@@ -51,15 +51,25 @@ texts.instructions_page_three = '<h2>The bonus</h2>\
 
 texts.start_experiment = '<h2>Keep in mind</h2>\
               <ul><li>Treat all information above the line as true and disregard all other knowledge about the subject matter.</li>\
-              <li>Please don’t use any external help (i.e., drawing diagramms).</li>\
+              <li>Please don\'t use any external help (i.e., drawing diagramms).</li>\
               <li> If you think a conclusion follows necessarily select "Yes". </li>\
               <li> If you think a conclusion does not follow necessarily select "No". </li>\
-              <li> If you can’t decide whether a conclusion follows necessarily select "I don’t know".  </li>\
+              <li> If you can\'t decide whether a conclusion follows necessarily select "I don\'t know".  </li>\
                   <li>"Some" means "at least one, possibly all".</li>\
-                  <li>Respond correcrtly on at least 60% of the trials to get the additional $0.75.</li></ul>\
+                  <li>Respond correctly on at least 60% of the problems (in which you responded with "Yes" or "No") to get a bonus of $0.75.</li></ul>\
                   <p>Click "Start" to begin the experiment.</p>'
 
-texts.break = '<p class = center-content>You completed the first half. Click "Continue" to get to the second half of the trials.</p> <p class = center-content>Keep up the good work!</p>'
+texts.break = '<p class = center-content>You completed the first half.</p> \
+Keep in mind:\
+<ul><li>Treat all information above the line as true and disregard all other knowledge about the subject matter.</li>\
+<li>Please don\'t use any external help (i.e., drawing diagramms).</li>\
+<li> If you think a conclusion follows necessarily select "Yes". </li>\
+<li> If you think a conclusion does not follow necessarily select "No". </li>\
+<li> If you can\'t decide whether a conclusion follows necessarily select "I don\'t know".  </li>\
+    <li>"Some" means "at least one, possibly all".</li>\
+    <li>Respond correctly on at least 60% of the problems (in which you responded with "Yes" or "No") to get a bonus of $0.75.</li></ul>\
+    <p>Click "Continue" to get to the second half of the trials.</p>\
+      <p>Keep up the good work!</p>'
 
 texts.middle_term =  ['redes','wasses','foins','lebs','sothods','punds','cofts','flamps','fosks','gruts',
                       'chindles','brops','piffures','jubs','spashes','dathses','pives','veemers','soats','vennars',

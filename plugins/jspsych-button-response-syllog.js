@@ -90,7 +90,7 @@ jsPsych.plugins["button-response-syllog"] = (function() {
       var end_time = Date.now();
       var rt = end_time - start_time;
       if(tempChoice == 0){response.button = 'yes';}
-      else if (tempChoice == 1) {response.button = 'I don`t know';}
+      else if (tempChoice == 1) {response.button = "I don't know";}
       else if (tempChoice == 2){response.button = 'no';}
       response.rt = rt;
 
