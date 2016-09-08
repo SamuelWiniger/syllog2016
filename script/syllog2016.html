@@ -577,7 +577,7 @@ var first_block = {
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
   on_finish: function(data){
-   var correct = "no";
+   var correct = "";
    if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
      correct = "yes";
    }
@@ -603,7 +603,7 @@ var second_block = {
   choices: ['Yes',"I don't know",'No'],
   is_html: true,
   on_finish: function(data){
-  var correct = "no";
+  var correct = "";
   if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
     correct = "yes";
   }
@@ -623,18 +623,15 @@ function getSubjectData() {
 
   var n_cor = 0;
   var n_idk = 0;
-  var n_inc = 0;
 
   for (var i = 0; i < eval.length; i++) {
     if (eval[i].correct == "yes") {n_cor++;}
     if (eval[i].correct == "idk") {n_idk++;}
-    if (eval[i].correct == "no") {n_inc++;}
     }
 
   return {
     perc_cor: Math.floor(n_cor/(eval.length - n_idk)*100),
     idk: n_idk,
-    per_inc: Math.floor(n_inc/(eval.length - n_idk)*100),
   }
 }
 /******************************************************************************/
@@ -684,6 +681,17 @@ var survey_p2 = {
 };
 timeline.push(survey_p2);
 
+
+var debrief_block = {
+  type: "text",
+  text: function() {
+    var subject_data = getSubjectData();
+    return "<p>You responded correctly on "+subject_data.perc_cor+"% of "+
+    "the trials.</p><p>You ommited "+subject_data.idk+" trials.";
+  }
+};
+timeline.push(debrief_block);
+
 var survey_p3 = {
 	type: 'survey-text',
 	questions: q3,
@@ -698,25 +706,17 @@ var survey_p3 = {
 };
 timeline.push(survey_p3);
 
-var debrief_block = {
-  type: "text",
-  text: function() {
-    var subject_data = getSubjectData();
-    return "<p>You responded correctly on "+subject_data.perc_cor+"% of "+
-    "the trials.</p><p>You ommited "+subject_data.idk+" trials.</p><p>You responded incorrectly on "+subject_data.per_inc+"% of "+
-    "the trials.</p>";
-  }
-};
-timeline.push(debrief_block);
-
 
 /******************************************************************************/
 /**************************   Data saving  ************************************/
 
 /*Add date and ID to data*/
+
 jsPsych.data.addProperties({
   date: date,
-  ID: Subject_ID
+  ID: Subject_ID,
+  pcor: eval(function(){ var subject_data = getSubjectData(); return subject_data.perc_cor;}),
+  nidk: eval(function(){var subject_data = getSubjectData(); return subject_data.idk;})
   });
 
 /*Add IP address to data*/

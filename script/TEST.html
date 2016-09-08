@@ -525,32 +525,91 @@ function getSubjectData() {
 
   var n_cor = 0;
   var n_idk = 0;
-  var n_inc = 0;
 
   for (var i = 0; i < eval.length; i++) {
     if (eval[i].correct == "yes") {n_cor++;}
     if (eval[i].correct == "idk") {n_idk++;}
-    if (eval[i].correct == "no") {n_inc++;}
     }
-console.log(eval.length)
+
+  var perc_cor =  Math.floor(n_cor/(eval.length - n_idk)*100);
+  var idk =  n_idk;
+
+  bonus = "";
+  if(perc_cor >= 60) bonus = "<p>You qualify for the bonus.</p>";
+  if(perc_cor < 60) bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";
+  if (ikd = 32) bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";
+
   return {
-    perc_cor: Math.floor(n_cor/(eval.length - n_idk)*100),
-    idk: n_idk,
-    per_inc: Math.floor(n_inc/(eval.length - n_idk)*100),
+    perc_cor: perc_cor,
+    idk: idk,
+    bonus: bonus
   }
 }
 
-var debrief_block = {
+/******************************************************************************/
+/*****************************   survey  **************************************/
+var q1 = [
+	"What is your age?",
+	"What is your gender?",
+	"What is your employment status?",
+  "What is the highest degree or level of education you have completed?"];
+var q2 =["Do you have any training in formal logic (e.g., taken a course)?",
+	"Do you have programming experience in more than one programming language?",
+  "Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent).",
+  "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];//ask Peter which is better.
+var q3 = ["If you want to leave any comments, please write them below:"];
+
+var opt1 = ["Male", "Female", "Other / No answer"];
+var opt2 = ["Working", "Student", "Seeking work", "Other"];
+var opt3 = ["Less than high school","High school graduate", "Some higher education, no degree", "Higher education (e.g., bachelor's degree, associate degree)", "Post graduate degree (e.g., master's degree, doctorate degree)",];
+var opt4 = ["Yes", "No"]
+var opt5 = ["Yes", "No",];
+var opt6 = ["1 (elementary school level)","2","3","4","5","6","7","8","9","10 (PhD in math or equivalent)"];
+var opt7 = ["Yes (my data can be used)", "No (better not use my data)"];
+
+var survey_p1 = {
+	type: 'survey',
+	questions: q1,
+	options: ["0", opt1, opt2, opt3],
+	required: [true, true, true, true]
+};
+timeline.push(survey_p1);
+
+var survey_p2 = {
+	type: 'survey-multi-choice',
+	questions: q2,
+	options: [opt4, opt5, opt6, opt7],
+	required: [true, true, true, true]
+};
+timeline.push(survey_p2);
+
+
+var feedback_block = {
   type: "text",
   text: function() {
     var subject_data = getSubjectData();
     return "<p>You responded correctly on "+subject_data.perc_cor+"% of "+
-    "the trials.</p><p>You ommited "+subject_data.idk+" trials.</p><p>You responded incorrectly on "+subject_data.per_inc+"% of "+
-    "the trials.</p>";
+    "the trials.</p><p>You ommited "+subject_data.idk+" trials."+ subject_data.bonus;
   }
 };
-timeline.push(debrief_block);
+timeline.push(feedback_block);
 
+var survey_p3 = {
+	type: 'survey-text',
+	questions: q3,
+	rows: [5],
+	columns: [90],
+	preamble: getPar(texts.save),
+	on_finish: function(data){
+				var csvString = jsPsych.data.dataAsCSV();
+				var jsonString = jsPsych.data.dataAsJSON();
+				saveData(Subject_ID, csvString, jsonString)
+			}
+};
+timeline.push(survey_p3);
+
+
+/****************************************************/
 
 jsPsych.init({
     display_element: $('#jspsych-target'),
