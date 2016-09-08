@@ -629,9 +629,20 @@ function getSubjectData() {
     if (eval[i].correct == "idk") {n_idk++;}
     }
 
+    if (n_idk == eval.length){
+      var perc_cor = 0;}
+      else{
+      var perc_cor =  Math.floor(n_cor/(eval.length - n_idk)*100);
+          }
+
+  bonus = "";
+  if(perc_cor >= 60){ bonus = "<p>You qualify for the bonus.</p>";}
+  else if(perc_cor < 60){ bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";}
+
   return {
-    perc_cor: Math.floor(n_cor/(eval.length - n_idk)*100),
-    idk: n_idk,
+    perc_cor: perc_cor,
+    bonus: bonus,
+    idk: n_idk
   }
 }
 /******************************************************************************/
@@ -654,8 +665,8 @@ var q1 = [
 var q2 =["Do you have any training in formal logic (e.g., taken a course)?",
 	"Do you have programming experience in more than one programming language?",
   "Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent).",
-  "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];//ask Peter which is better.
-var q3 = ["If you want to leave any comments, please write them below:"];
+  "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];
+var q3 = ["Please enter you CrowdFlower ID below", "Please enter your channel ID below","If you want to leave any comments, please write them below:"];
 
 var opt1 = ["Male", "Female", "Other / No answer"];
 var opt2 = ["Working", "Student", "Seeking work", "Other"];
@@ -681,22 +692,58 @@ var survey_p2 = {
 };
 timeline.push(survey_p2);
 
-
-var debrief_block = {
-  type: "text",
-  text: function() {
+var feedback_block = {
+  type: "button-response",
+  stimulus: function() {
     var subject_data = getSubjectData();
-    return "<p>You responded correctly on "+subject_data.perc_cor+"% of "+
-    "the trials.</p><p>You ommited "+subject_data.idk+" trials.";
-  }
+    return "<p>You responded correctly on "+subject_data.perc_cor+"% of the trials.</p>"+ subject_data.bonus;
+  },
+  is_html: true,
+  choices: ["Next page"]
 };
-timeline.push(debrief_block);
+timeline.push(feedback_block);
 
 var survey_p3 = {
 	type: 'survey-text',
 	questions: q3,
-	rows: [5],
-	columns: [90],
+	rows: [1,1,5],
+	columns: [45,45,90],
+	preamble: getPar(texts.save)
+};
+timeline.push(survey_p3);
+
+var debriefing_block = {
+     type: 'text',
+     cont_key: [114],
+     text: function (){
+        var perc = getperc();
+        if (perc >= 60){
+          return getPar(texts.debriefing2,'margin-top:100px');
+        } else{
+          return getPar(texts.debriefing1,'margin-top:100px');
+        }
+     },
+   };
+
+timeline.push(debriefing_block);
+
+function getperc(){
+   var subject_data = getSubjectData();
+   return subject_data.perc_cor;
+   };
+
+function getidk(){
+  var subject_data = getSubjectData();
+  return subject_data.idk;
+  };
+
+
+
+var survey_p3 = {
+	type: 'survey-text',
+	questions: q3,
+	rows: [1,1,5],
+	columns: [45,45,90],
 	preamble: getPar(texts.save),
 	on_finish: function(data){
 				var csvString = jsPsych.data.dataAsCSV();
@@ -715,8 +762,6 @@ timeline.push(survey_p3);
 jsPsych.data.addProperties({
   date: date,
   ID: Subject_ID,
-  pcor: eval(function(){ var subject_data = getSubjectData(); return subject_data.perc_cor;}),
-  nidk: eval(function(){var subject_data = getSubjectData(); return subject_data.idk;})
   });
 
 /*Add IP address to data*/

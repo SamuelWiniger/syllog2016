@@ -160,8 +160,13 @@ texts.button = "<div style='float:right;'><button id='jspsych-fullscreen-button'
 
 texts.save = 'Please click on "Save". This will send us your data and you will recieve your code for the payment.'
 
-texts.debriefing = '<h3>Thank you for your participation!</h3>\
+texts.debriefing1 = '<h3>Thank you for your participation!</h3>\
                   <p>Your confirmation code is: Syllog_2016_N2GK</p>\
                    <p>Please copy this code and enter it to recieve your payment.</p>'
+
+
+texts.debriefing2 = '<h3>Thank you for your participation!</h3>\
+                 <p>Your confirmation code is: Syllog_2016_T4WP</p>\
+                  <p>Please copy this code and enter it to recieve your payment.</p>'
 
 texts.end_fullscreen = '<p>To finish the experiment, we ask you to tell us something about yourself. Fullscreen mode will be exited for this.</p>'

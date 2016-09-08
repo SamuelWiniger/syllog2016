@@ -35,6 +35,11 @@
 
 var timeline = [];
 
+var Subject_ID = jsPsych.randomization.randomID(16);
+var tmpdate = (new Date());
+var date = tmpdate.toUTCString();
+
+
 var errStyle = 'color:red;margin-top:200px;text-align:center;font-weight:bold;';
 
 function getPar(str,style){
@@ -43,6 +48,19 @@ function getPar(str,style){
     }
     return "<div class='jspsych-display-element'><p style='"+style+"'>"+str+"</p></div>"
   }
+
+
+/******************************************************************************/
+/***************************   fullscreen  ************************************/
+
+/******************************************************************************/
+/*******************   study info and consent form  ***************************/
+
+
+/******************************************************************************/
+/**************************   Instructions  ***********************************/
+
+
 
 /******************************************************************************/
 /******************************   trials  *************************************/
@@ -448,176 +466,254 @@ var stimuli = [[stimulus1[order[0][0]],stimulus1[order[0][1]]],
                     [stimulus20[order[19][0]],stimulus20[order[19][1]]]
                   ];
 
-var found = false;
 
-while (!found) {
-  var tmp_stimuli = jsPsych.randomization.shuffle(stimuli);
-  var slice_stimuli = tmp_stimuli.slice(0,16);
-  n_valid = 0;
-  for (var i = 0; i < slice_stimuli.length; i++) {
-    if (slice_stimuli[i][0].data.Validity == "valid") n_valid++;
-  }
-  if (n_valid >= 7) found = true;
-}
+                  var found = false;
 
-var stimuli = slice_stimuli;
+                  while (!found) {
+                    var tmp_stimuli = jsPsych.randomization.shuffle(stimuli);
+                    var slice_stimuli = tmp_stimuli.slice(0,16);
+                    n_valid = 0;
+                    for (var i = 0; i < slice_stimuli.length; i++) {
+                      if (slice_stimuli[i][0].data.Validity == "valid") n_valid++;
+                    }
+                    if (n_valid >= 7) found = true;
+                  }
 
-var stimuli_first_block = [];
-var stimuli_second_block = [];
+                  var stimuli = slice_stimuli;
 
-for (var k = 0; k < 16; k++){
-  stimuli_first_block.push(stimuli[k][0]);
-  stimuli_second_block.push(stimuli[k][1]);
-}
+                  var stimuli_first_block = [];
+                  var stimuli_second_block = [];
 
-var rand_stimuli_first_block = jsPsych.randomization.shuffle(stimuli_first_block);
-var rand_stimuli_second_block = jsPsych.randomization.shuffle(stimuli_second_block);
+                  for (var k = 0; k < 16; k++){
+                    stimuli_first_block.push(stimuli[k][0]);
+                    stimuli_second_block.push(stimuli[k][1]);
+                  }
 
+                  var rand_stimuli_first_block = jsPsych.randomization.shuffle(stimuli_first_block);
+                  var rand_stimuli_second_block = jsPsych.randomization.shuffle(stimuli_second_block);
 
-var first_block = {
-  type: 'button-response-syllog',
-  choices: ['Yes',"I don't know",'No'],
-  is_html: true,
-  on_finish: function(data){
-   var correct = "no";
-   if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
-     correct = "yes";
-   }
-   if(data.button_pressed == "I don`t know"){
-     correct = "idk";
-   }
-   jsPsych.data.addDataToLastTrial({correct: correct});
-    },
-  timeline: rand_stimuli_first_block
-    }
-timeline.push(first_block);
+                  var first_block = {
+                    type: 'button-response-syllog',
+                    choices: ['Yes',"I don't know",'No'],
+                    is_html: true,
+                    on_finish: function(data){
+                     var correct = "";
+                     if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
+                       correct = "yes";
+                     }
+                     if(data.button_pressed == "I don`t know"){
+                       correct = "idk";
+                     }
+                     jsPsych.data.addDataToLastTrial({correct: correct});
+                      },
+                    timeline: rand_stimuli_first_block
+                      }
+                  timeline.push(first_block);
 
-var break_block = {
-  stimulus: texts.break,
-  type: 'button-response',
-  choices: ['Continue'],
-  is_html: true
-    }
-timeline.push(break_block);
+                  var break_block = {
+                    stimulus: texts.break,
+                    type: 'button-response',
+                    choices: ['Continue'],
+                    is_html: true
+                      }
+                  timeline.push(break_block);
 
-var second_block = {
-  type: 'button-response-syllog',
-  choices: ['Yes',"I don't know",'No'],
-  is_html: true,
-  on_finish: function(data){
-  var correct = "no";
-  if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
-    correct = "yes";
-  }
-  if(data.button_pressed == "I don`t know"){
-    correct = "idk";
-  }
-  jsPsych.data.addDataToLastTrial({correct: correct});
-   },
-  timeline: rand_stimuli_second_block
-    }
-timeline.push(second_block);
-
-
-function getSubjectData() {
-
-  var eval = jsPsych.data.getTrialsOfType('button-response-syllog');
-
-  var n_cor = 0;
-  var n_idk = 0;
-
-  for (var i = 0; i < eval.length; i++) {
-    if (eval[i].correct == "yes") {n_cor++;}
-    if (eval[i].correct == "idk") {n_idk++;}
-    }
-
-  var perc_cor =  Math.floor(n_cor/(eval.length - n_idk)*100);
-  var idk =  n_idk;
-
-  bonus = "";
-  if(perc_cor >= 60) bonus = "<p>You qualify for the bonus.</p>";
-  if(perc_cor < 60) bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";
-  if (ikd = 32) bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";
-
-  return {
-    perc_cor: perc_cor,
-    idk: idk,
-    bonus: bonus
-  }
-}
-
-/******************************************************************************/
-/*****************************   survey  **************************************/
-var q1 = [
-	"What is your age?",
-	"What is your gender?",
-	"What is your employment status?",
-  "What is the highest degree or level of education you have completed?"];
-var q2 =["Do you have any training in formal logic (e.g., taken a course)?",
-	"Do you have programming experience in more than one programming language?",
-  "Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent).",
-  "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];//ask Peter which is better.
-var q3 = ["If you want to leave any comments, please write them below:"];
-
-var opt1 = ["Male", "Female", "Other / No answer"];
-var opt2 = ["Working", "Student", "Seeking work", "Other"];
-var opt3 = ["Less than high school","High school graduate", "Some higher education, no degree", "Higher education (e.g., bachelor's degree, associate degree)", "Post graduate degree (e.g., master's degree, doctorate degree)",];
-var opt4 = ["Yes", "No"]
-var opt5 = ["Yes", "No",];
-var opt6 = ["1 (elementary school level)","2","3","4","5","6","7","8","9","10 (PhD in math or equivalent)"];
-var opt7 = ["Yes (my data can be used)", "No (better not use my data)"];
-
-var survey_p1 = {
-	type: 'survey',
-	questions: q1,
-	options: ["0", opt1, opt2, opt3],
-	required: [true, true, true, true]
-};
-timeline.push(survey_p1);
-
-var survey_p2 = {
-	type: 'survey-multi-choice',
-	questions: q2,
-	options: [opt4, opt5, opt6, opt7],
-	required: [true, true, true, true]
-};
-timeline.push(survey_p2);
+                  var second_block = {
+                    type: 'button-response-syllog',
+                    choices: ['Yes',"I don't know",'No'],
+                    is_html: true,
+                    on_finish: function(data){
+                    var correct = "";
+                    if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
+                      correct = "yes";
+                    }
+                    if(data.button_pressed == "I don`t know"){
+                      correct = "idk";
+                    }
+                    jsPsych.data.addDataToLastTrial({correct: correct});
+                     },
+                    timeline: rand_stimuli_second_block
+                      }
+                  timeline.push(second_block);
 
 
-var feedback_block = {
-  type: "text",
-  text: function() {
-    var subject_data = getSubjectData();
-    return "<p>You responded correctly on "+subject_data.perc_cor+"% of "+
-    "the trials.</p><p>You ommited "+subject_data.idk+" trials."+ subject_data.bonus;
-  }
-};
-timeline.push(feedback_block);
+                  function getSubjectData() {
 
-var survey_p3 = {
-	type: 'survey-text',
-	questions: q3,
-	rows: [5],
-	columns: [90],
-	preamble: getPar(texts.save),
-	on_finish: function(data){
-				var csvString = jsPsych.data.dataAsCSV();
-				var jsonString = jsPsych.data.dataAsJSON();
-				saveData(Subject_ID, csvString, jsonString)
-			}
-};
-timeline.push(survey_p3);
+                    var eval = jsPsych.data.getTrialsOfType('button-response-syllog');
+
+                    var n_cor = 0;
+                    var n_idk = 0;
+
+                    for (var i = 0; i < eval.length; i++) {
+                      if (eval[i].correct == "yes") {n_cor++;}
+                      if (eval[i].correct == "idk") {n_idk++;}
+                      }
+
+                      if (n_idk == eval.length){
+                        var perc_cor = 0;}
+                        else{
+                        var perc_cor =  Math.floor(n_cor/(eval.length - n_idk)*100);
+                            }
+
+                    bonus = "";
+                    if(perc_cor >= 60){ bonus = "<p>You qualify for the bonus.</p>";}
+                    else if(perc_cor < 60){ bonus = "<p>Unfortunately you do not qualify for the bonus.</p>";}
+
+                    return {
+                      perc_cor: perc_cor,
+                      bonus: bonus,
+                      idk: n_idk
+                    }
+                  }
+                  /******************************************************************************/
+                  /*****************************   survey  **************************************/
+
+                    var end_fullscreen = {
+                            type: 'fullscreen',
+                            showtext: getPar(texts.end_fullscreen,'margin-top:150px;'),
+                            buttonStyle : 'float:right;',
+                            buttontext: "Proceed to survey",
+                            exit: true
+                        }
+                  timeline.push(end_fullscreen);
+
+                  var q1 = [
+                  	"What is your age?",
+                  	"What is your gender?",
+                  	"What is your employment status?",
+                    "What is the highest degree or level of education you have completed?"];
+                  var q2 =["Do you have any training in formal logic (e.g., taken a course)?",
+                  	"Do you have programming experience in more than one programming language?",
+                    "Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent).",
+                    "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];
+                  var q3 = ["Please enter you CrowdFlower ID below", "Please enter your channel ID below","If you want to leave any comments, please write them below:"];
+
+                  var opt1 = ["Male", "Female", "Other / No answer"];
+                  var opt2 = ["Working", "Student", "Seeking work", "Other"];
+                  var opt3 = ["Less than high school","High school graduate", "Some higher education, no degree", "Higher education (e.g., bachelor's degree, associate degree)", "Post graduate degree (e.g., master's degree, doctorate degree)",];
+                  var opt4 = ["Yes", "No"]
+                  var opt5 = ["Yes", "No",];
+                  var opt6 = ["1 (elementary school level)","2","3","4","5","6","7","8","9","10 (PhD in math or equivalent)"];
+                  var opt7 = ["Yes (my data can be used)", "No (better not use my data)"];
+
+                  var survey_p1 = {
+                  	type: 'survey',
+                  	questions: q1,
+                  	options: ["0", opt1, opt2, opt3],
+                  	required: [true, true, true, true]
+                  };
+                  timeline.push(survey_p1);
+
+                  var survey_p2 = {
+                  	type: 'survey-multi-choice',
+                  	questions: q2,
+                  	options: [opt4, opt5, opt6, opt7],
+                  	required: [true, true, true, true]
+                  };
+                  timeline.push(survey_p2);
+
+                  var feedback_block = {
+                    type: "button-response",
+                    stimulus: function() {
+                      var subject_data = getSubjectData();
+                      return "<p>You responded correctly on "+subject_data.perc_cor+"% of the trials.</p>"+ subject_data.bonus;
+                    },
+                    is_html: true,
+                    choices: ["Next page"]
+                  };
+                  timeline.push(feedback_block);
+
+                  var survey_p3 = {
+                  	type: 'survey-text',
+                  	questions: q3,
+                  	rows: [1,1,5],
+                  	columns: [45,45,90],
+                  	preamble: getPar(texts.save)
+                  };
+                  timeline.push(survey_p3);
 
 
-/****************************************************/
+                  function getperc(){
+                     var subject_data = getSubjectData();
+                     return subject_data.perc_cor;
+                     };
 
-jsPsych.init({
-    display_element: $('#jspsych-target'),
-    timeline: timeline,
-	  default_iti: 100,
-    on_finish: function() {
-     jsPsych.data.displayData();
-   }
-  });
-  </script>
-</html>
+                  function getidk(){
+                    var subject_data = getSubjectData();
+                    return subject_data.idk;
+                    };
+
+                    var debriefing_block = {
+                         type: 'text',
+                         cont_key: [114],
+                         text: function (){
+                            var perc = getperc();
+                            if (perc >= 60){
+                              return getPar(texts.debriefing2,'margin-top:100px');
+                            } else{
+                              return getPar(texts.debriefing1,'margin-top:100px');
+                            }
+                         },
+                       };
+timeline.push(debriefing_block);
+
+
+
+
+
+
+
+
+
+    
+
+
+                  /******************************************************************************/
+                  /**************************   Data saving  ************************************/
+
+                  /*Add date and ID to data*/
+
+                  jsPsych.data.addProperties({
+                    date: date,
+                    ID: Subject_ID,
+                    pcor: getperc(),
+                    nidk: getidk()
+                    });
+
+                  /*Add IP address to data*/
+                  $.getJSON('//api.ipify.org?format=json', function(data) {
+                    var tempIP = JSON.stringify(data, null, 0);
+                    jsPsych.data.addProperties({
+                      IP: tempIP
+                    	});
+                  });
+
+
+
+                   var debriefing_block = {
+                          type: 'text',
+                          text: getPar(texts.debriefing,'margin-top:100px'),
+                          cont_key: [114]
+                        };
+                  timeline.push(debriefing_block);
+
+                  function saveData(subjectID, CSV, JSON){
+                         $.ajax({
+                            type: 'post',
+                            cache: false,
+                            url: '../store.php',
+                            data: {subjectID: Subject_ID, folder: "syllog2016data", csvStrings: CSV, dataAsJSON: JSON}
+                         });
+                        }
+
+                  var csvString = jsPsych.data.dataAsCSV();
+
+                  /* */
+                    jsPsych.init({
+                      display_element: $('#jspsych-target'),
+                      timeline: timeline,
+                  	  default_iti: 100,
+                      on_finish: function(data){ saveData()}
+                    });
+                    </script>
+                  </html>
