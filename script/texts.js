@@ -37,7 +37,7 @@ texts.instructions_page_two = '<h2>Rules of logic</h2><p>Please note that accord
 
 texts.instructions_page_four = '<h2>Overview</h2>\
                                 <ul><li>You will solve 32 problems.</li>\
-                                <li>There will be a break after half the trials.</li>\
+                                <li>There will be a break after half the problems.</li>\
                                 <li>Do not use any aids: You must not make notes or draw diagrams of any kind to help you with this task!</li>\
                                 <li>After the 32 problems we ask you to provide some demographic data about yourself.</li></ul>\
                                 <p>The next slide will include an example problem. If you are unsure about the task, please go back now and read the instructions again. You will not be able to reread the instructions after clicking "Next".</p>'
@@ -59,7 +59,7 @@ texts.start_experiment = '<h2>Keep in mind</h2>\
                   <li>Respond correctly on at least 60% of the problems (in which you responded with "Yes" or "No") to get a bonus of $0.75.</li></ul>\
                   <p>Click "Start" to begin the experiment.</p>'
 
-texts.break = '<p class = center-content>You completed the first half.</p> \
+texts.break = '<p class = center-content>You completed the first half. Keep up the good work!</p> \
 Keep in mind:\
 <ul><li>Treat all information above the line as true and disregard all other knowledge about the subject matter.</li>\
 <li>Please don\'t use any external help (i.e., drawing diagramms).</li>\
@@ -68,8 +68,7 @@ Keep in mind:\
 <li> If you can\'t decide whether a conclusion follows necessarily select "I don\'t know".  </li>\
     <li>"Some" means "at least one, possibly all".</li>\
     <li>Respond correctly on at least 60% of the problems (in which you responded with "Yes" or "No") to get a bonus of $0.75.</li></ul>\
-    <p>Click "Continue" to get to the second half of the trials.</p>\
-      <p>Keep up the good work!</p>'
+    <p>Click "Continue" to get to the second half of the problems.</p>'
 
 texts.middle_term =  ['redes','wasses','foins','lebs','sothods','punds','cofts','flamps','fosks','gruts',
                       'chindles','brops','piffures','jubs','spashes','dathses','pives','veemers','soats','vennars',
@@ -178,7 +177,7 @@ texts.button = "<div style='float:right;'><button id='jspsych-fullscreen-button'
 texts.save = 'Please click on "Save". This will send us your data and you will recieve your code for the payment.'
 
 texts.debriefing1 = '<h3>Thank you for your participation!</h3>\
-                  <p>Your confirmation code is: Syllog_2016_N2GK</p>\
+                  <p>Your confirmation code is: Syllog_2016_KG3V</p>\
                    <p>Please copy this code and enter it to recieve your payment.</p>'
 
 

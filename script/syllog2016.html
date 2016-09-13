@@ -605,7 +605,7 @@ var first_block = {
    if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
      correct = "correct";
    }
-   if(data.button_pressed == "I don't know"){
+   if(data.button_pressed == "I dont know"){
      correct = "idk";
    }
    jsPsych.data.addDataToLastTrial({correct: correct});
@@ -631,10 +631,11 @@ var second_block = {
   if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
     correct = "correct";
   }
-  if(data.button_pressed == "I don't know"){
+  if(data.button_pressed == "I dont know"){
     correct = "idk";
   }
   jsPsych.data.addDataToLastTrial({correct: correct});
+
    },
   timeline: rand_stimuli_second_block
     }
@@ -650,7 +651,7 @@ function getSubjectData() {
 
   for (var i = 0; i < eval.length; i++) {
     if (eval[i].correct == "correct") {n_cor++;}
-    if (eval[i].correct == "idk") {n_idk++;}
+    else if (eval[i].correct == "idk") {n_idk++;}
     }
 
     if (n_idk == eval.length){
@@ -660,7 +661,7 @@ function getSubjectData() {
           }
 
   bonus = "";
-  if(perc_cor >= 60){ bonus = "<p>Congratulations, you get the bonus.</p>";}
+  if(perc_cor >= 60){ bonus = "<p>Congratulations, you get the bonus.</p><p>Please note that it may take up to 48 hours for us to send you the bonus.";}
   else if(perc_cor < 60){ bonus = "<p>Unfortunately, you do not get the bonus.</p>";}
 
   return {
