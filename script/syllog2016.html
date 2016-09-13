@@ -605,7 +605,7 @@ var first_block = {
    if( (data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
      correct = "correct";
    }
-   if(data.button_pressed == "I dont know"){
+   if(data.button_pressed == "I don\'t know"){
      correct = "idk";
    }
    jsPsych.data.addDataToLastTrial({correct: correct});
@@ -631,7 +631,7 @@ var second_block = {
   if((data.Validity == "valid" &&  data.button_pressed == "yes") || (data.Validity == "invalid" &&  data.button_pressed == "no") ){
     correct = "correct";
   }
-  if(data.button_pressed == "I dont know"){
+  if(data.button_pressed == "I don\'t know"){
     correct = "idk";
   }
   jsPsych.data.addDataToLastTrial({correct: correct});
