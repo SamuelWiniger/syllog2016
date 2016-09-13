@@ -39,6 +39,19 @@ var Subject_ID = jsPsych.randomization.randomID(16);
 var tmpdate = (new Date());
 var date = tmpdate.toUTCString();
 
+/*Add date and ID to data*/
+jsPsych.data.addProperties({
+  date: date,
+  ID: Subject_ID
+  });
+
+/*Add IP address to data*/
+$.getJSON('//api.ipify.org?format=json', function(data) {
+  var tempIP = JSON.stringify(data, null, 0);
+  jsPsych.data.addProperties({
+    IP: tempIP
+  	});
+});
 
 var errStyle = 'color:red;margin-top:200px;text-align:center;font-weight:bold;';
 
@@ -48,6 +61,16 @@ function getPar(str,style){
     }
     return "<div class='jspsych-display-element'><p style='"+style+"'>"+str+"</p></div>"
   }
+
+function getperc(){
+   var subject_data = getSubjectData();
+   return subject_data.perc_cor;
+   }
+
+function getidk(){
+  var subject_data = getSubjectData();
+  return subject_data.idk;
+}
 
 
 /******************************************************************************/
@@ -697,48 +720,16 @@ var feedback_block = {
   type: "button-response",
   stimulus: function() {
     var subject_data = getSubjectData();
+        jsPsych.data.addProperties({
+        pcor: subject_data.perc_cor,
+        nidk: subject_data.idk
+        });
     return "<p>You responded correctly on "+subject_data.perc_cor+"% of the trials.</p>"+ subject_data.bonus;
   },
   is_html: true,
   choices: ["Next page"]
 };
 timeline.push(feedback_block);
-
-var survey_p3 = {
-	type: 'survey-text',
-	questions: q3,
-	rows: [1,1,5],
-	columns: [45,45,90],
-	preamble: getPar(texts.save)
-};
-timeline.push(survey_p3);
-
-var debriefing_block = {
-     type: 'text',
-     cont_key: [114],
-     text: function (){
-        var perc = getperc();
-        if (perc >= 60){
-          return getPar(texts.debriefing2,'margin-top:100px');
-        } else{
-          return getPar(texts.debriefing1,'margin-top:100px');
-        }
-     },
-   };
-
-timeline.push(debriefing_block);
-
-function getperc(){
-   var subject_data = getSubjectData();
-   return subject_data.perc_cor;
-   };
-
-function getidk(){
-  var subject_data = getSubjectData();
-  return subject_data.idk;
-};
-
-
 
 var survey_p3 = {
 	type: 'survey-text',
@@ -754,33 +745,22 @@ var survey_p3 = {
 };
 timeline.push(survey_p3);
 
+var debriefing_block = {
+     type: 'text',
+     cont_key: [114],
+     text: function (){
+        var perc = getperc();
+        if (perc >= 60){
+          return getPar(texts.debriefing2,'margin-top:100px');
+        } else{
+          return getPar(texts.debriefing1,'margin-top:100px');
+        }
+     },
+   };
+timeline.push(debriefing_block);
 
 /******************************************************************************/
 /**************************   Data saving  ************************************/
-
-/*Add date and ID to data*/
-
-jsPsych.data.addProperties({
-  date: date,
-  ID: Subject_ID,
-  });
-
-/*Add IP address to data*/
-$.getJSON('//api.ipify.org?format=json', function(data) {
-  var tempIP = JSON.stringify(data, null, 0);
-  jsPsych.data.addProperties({
-    IP: tempIP
-  	});
-});
-
-
-
- var debriefing_block = {
-        type: 'text',
-        text: getPar(texts.debriefing,'margin-top:100px'),
-        cont_key: [114]
-      };
-timeline.push(debriefing_block);
 
 function saveData(subjectID, CSV, JSON){
        $.ajax({
