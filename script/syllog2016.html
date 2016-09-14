@@ -691,7 +691,7 @@ var q2 =["Do you have any training in formal logic (e.g., taken a course)?",
 	"Do you have programming experience in more than one programming language?",
   "Please rate your math skills on the scale from 1 to 10 (1 = elementary school level; 10 = PhD in math or equivalent).",
   "Did you solve all the taks conscientiously? Did you seriously attempt to solve all problems? (This question has no influence on your reward.)"];
-var q3 = ["Please enter you CrowdFlower ID below", "Please enter your channel ID below","If you want to leave any comments, please write them below:"];
+var q3 = ["Please enter you contributor ID below","If you want to leave any comments, please write them below:"];
 
 var opt1 = ["Male", "Female", "Other / No answer"];
 var opt2 = ["Working", "Student", "Seeking work", "Other"];
@@ -725,7 +725,7 @@ var feedback_block = {
         pcor: subject_data.perc_cor,
         nidk: subject_data.idk
         });
-    return "<p>You responded correctly on "+subject_data.perc_cor+"% of the trials.</p>"+ subject_data.bonus;
+    return "<p>You responded correctly on "+subject_data.perc_cor+"% of the problems.</p>"+ subject_data.bonus;
   },
   is_html: true,
   choices: ["Next page"]
@@ -735,8 +735,8 @@ timeline.push(feedback_block);
 var survey_p3 = {
 	type: 'survey-text',
 	questions: q3,
-	rows: [1,1,5],
-	columns: [45,45,90],
+	rows: [2,5],
+	columns: [45,90],
 	preamble: getPar(texts.save),
 	on_finish: function(data){
 				var csvString = jsPsych.data.dataAsCSV();

@@ -60,12 +60,9 @@ texts.start_experiment = '<h2>Keep in mind</h2>\
                   <p>Click "Start" to begin the experiment.</p>'
 
 texts.break = '<p class = center-content>You completed the first half. Keep up the good work!</p> \
-Keep in mind:\
+Reminder:\
 <ul><li>Treat all information above the line as true and disregard all other knowledge about the subject matter.</li>\
 <li>Please don\'t use any external help (i.e., drawing diagramms).</li>\
-<li> If you think a conclusion follows necessarily select "Yes". </li>\
-<li> If you think a conclusion does not follow necessarily select "No". </li>\
-<li> If you can\'t decide whether a conclusion follows necessarily select "I don\'t know".  </li>\
     <li>"Some" means "at least one, possibly all".</li>\
     <li>Respond correctly on at least 60% of the problems (in which you responded with "Yes" or "No") to get a bonus of $0.75.</li></ul>\
     <p>Click "Continue" to get to the second half of the problems.</p>'
